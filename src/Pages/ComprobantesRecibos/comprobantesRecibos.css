@@ -1,0 +1,194 @@
+.divComprobantes{
+    width: 98%;
+    margin: auto;
+    margin-top: 1rem;
+    padding-inline: 2rem;
+    padding-block: 1rem;
+    border-radius: 16px;
+    background-color: #FFFFFF;
+}
+
+.divComprobantes h1{
+    color: rgb(58,58,58, 0.9);
+    line-height: 3rem;
+    font-weight: 600;
+}
+
+.contenedorComprobantes{
+    margin: auto;
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+.cardComprobante{
+    background-color: #FFFFFF;
+    border: 2px solid rgb(58,58,58, 0.3);
+    border-radius: 10px;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.imagenPDFComprobante{
+    margin: auto;
+    margin-top: 1rem;
+}
+
+.imagenPDFComprobante img{
+    width: 100%;
+    filter: drop-shadow(0px 0px 5px rgb(58,58,58,0.6));
+}
+
+.fechaCardComprobante{
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 1.3rem;
+    color: rgb(58,58,58, 0.7);
+    font-weight: 700;
+}
+
+.botonDescargarCardComprobante{
+    display: flex;
+    justify-content: end;
+    padding-right: 1rem;
+    margin-top: 1rem;
+}
+
+.botonDescargarCardComprobante button{
+    padding-inline: 0.5rem;
+    padding-block: 0.2rem;
+    color: #FFFFFF;
+    background-color: #55a6fc;
+    border-radius: 5px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.botonDescargarCardComprobante button:hover{
+    background-color: #79b6f7;
+    transform: scale(1.2);
+}
+
+.botonEliminarCardComprobante{
+    display: flex;
+    justify-content: end;
+    padding-right: 0.5rem;
+    margin-top: 1rem;
+}
+
+.botonEliminarCardComprobante button{
+    padding-inline: 0.5rem;
+    padding-block: 0.2rem;
+    color: #FFFFFF;
+    background-color: #CE1D1F;
+    border-radius: 5px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.botonEliminarCardComprobante button:hover{
+    background-color: #d55052;
+    transform: scale(1.2);
+}
+
+.noHayDocumento{
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+
+@media (max-width: 576px){
+    .contenedorTituloYSubirDocumento {
+        justify-content: center;
+    }
+    .contenedorTituloYSubirDocumento h1{
+        font-size: 2rem;
+    }
+    .contenedorTituloYSubirDocumento h3{
+        display: none;
+    }
+    
+    .contenedorComprobantes{
+        gap: 3%;
+    }
+
+    .cardComprobante{
+        width: 30%;
+    }
+
+    .imagenPDFComprobante{
+        width: 50%;
+    }
+    .fechaCardComprobante{
+        margin-top: 0.5rem;
+    }
+    
+    .botonDescargarCardComprobante{
+        padding-right: 0.5rem;
+    }
+
+    .botonEliminarCardComprobante{
+        padding-right: 0.3rem;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 992px){
+    .contenedorTituloYSubirDocumento {
+        justify-content: center;
+    }
+    .contenedorTituloYSubirDocumento h1{
+        font-size: 2.5rem;
+    }
+    .contenedorTituloYSubirDocumento h3{
+        display: none;
+    }
+    
+    .contenedorComprobantes{
+        gap: 5%;
+    }
+
+    .cardComprobante{
+        width: 30%;
+    }
+
+    .imagenPDFComprobante{
+        width: 70%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1500px){
+    .contenedorTituloYSubirDocumento {
+        justify-content: space-between;
+    }
+    
+    .contenedorComprobantes{
+        gap: 1.25%;
+    }
+
+    .cardComprobante{
+        width: 11%;
+    }
+
+    .imagenPDFComprobante{
+        width: 70%;
+    }
+}
+
+@media (min-width: 1501px){
+    .contenedorTituloYSubirDocumento {
+        justify-content: space-between;
+    }
+    
+    .contenedorComprobantes{
+        gap: 1.25%;
+    }
+
+    .cardComprobante{
+        width: 6%;
+    }
+
+    .imagenPDFComprobante{
+        width: 70%;
+    }
+}

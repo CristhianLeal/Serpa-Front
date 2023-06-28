@@ -1,0 +1,55 @@
+.cardPerfil{
+    background-color: white;
+    border-radius: 30px;
+}
+
+.tituloPerfil{
+    font-weight: 600;
+}
+
+.botonDocumentosPerfil{
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    color: #FFFFFF;
+    background-color: #dc47ef;
+    border: none;
+    border-radius: 16px;
+    margin-top: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.botonDocumentosPerfil:hover{
+    background-color: #e171ef;
+    transform: scale(1.05);
+}
+
+.tituloSubirComprobantePerfil{
+    font-weight: 600;
+    margin-top: 2rem;
+    text-align: center;
+    padding-inline: 1rem;
+}
+
+@media (max-width: 576px) {
+    .cardPerfil{
+        width: 90%;
+    }
+    .botonDocumentosPerfil{
+        margin-top: 0.75rem;
+    }
+    .tituloSubirComprobantePerfil{
+        margin-top: 1.5rem;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {
+    .cardPerfil{
+        width: 50%;
+    }   
+}
+
+@media (min-width: 992px) {
+    .cardPerfil{
+        width: 40%;
+    }   
+}

@@ -1,0 +1,77 @@
+.card-body{
+    background-color: #8b6fcf ;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.card-title{
+    color: white;
+    font-weight: 600;
+}
+
+.iconoEdificios{
+    border: 5px solid #8b6fcf;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    position: relative;
+    top: 35px;
+}
+
+@media (max-width: 576px){
+    .cardEdificio{
+        width: 100%;
+    }    
+    .card-title{
+        font-size: 1.2rem;
+    }
+    .iconoEdificios{
+        width: 75px;
+        height: 75px;
+    }
+    .iconoEdificioImagen{
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {  
+    .cardEdificio{
+        width: 30%;
+    }    
+    .card-title{
+        font-size: 1rem;
+    }
+    .iconoEdificios{
+        width: 80px;
+        height: 80px;
+    }
+    .iconoEdificioImagen{
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (min-width: 992px){
+    .cardEdificio{
+        width: 22.75%;
+    }    
+    .card-title{
+        font-size: 1.25rem;
+    }
+    .iconoEdificios{
+        width: 100px;
+        height: 100px;
+    }
+    .iconoEdificioImagen{
+        width: 55px;
+        height: 55px;
+    }
+}
+
+.cardEdificio:hover{
+    cursor: pointer;
+}

@@ -1,0 +1,18 @@
+.container-crear-usuario{
+    background: url("../../assets/fondo.jpg") no-repeat center center fixed;
+    text-align: center;
+    border-radius: 60px;  
+}
+
+.btn-crear-usuario{
+    height: 30px;
+    width: 120px;
+    color: white;
+    background-color: #dc47ef;
+    border-radius: 10px;  
+    border-color: #dc47ef;
+}
+
+.divBotonVolverAtras{
+    text-align: start;
+}

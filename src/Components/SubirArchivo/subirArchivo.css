@@ -1,0 +1,33 @@
+input[type=file]::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+
+input[type=file]::before {
+content: 'Seleccionar archivo';
+display: inline-block;
+background: #f2f2f2;
+color: black;
+outline: none;
+white-space: nowrap;
+cursor: pointer;
+border: none;
+border-radius: 10px;
+font-size: 1rem;
+}
+
+.btn-personalizado{
+  background-color: #dc47ef;
+  border: #dc47ef;
+  color: white;
+}
+
+.btn-personalizado:hover{
+  background-color: #d464e3;
+  border: #d464e3;
+  color: white;
+}
+
+.formSubirArchivo{
+  width: 300px;
+  margin: auto;
+}

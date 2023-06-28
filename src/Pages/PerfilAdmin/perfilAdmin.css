@@ -1,0 +1,136 @@
+.botonEliminarPerfilAdmin:hover{
+    transform: scale(1.05);
+    z-index: 10000;
+    border: 1px solid #eb5858;
+    background-color: #eb5858 ;
+}
+
+.botonDescargarPerfilAdmin:hover{
+    transform: scale(1.05);
+    z-index: 10000;
+    border: 1px solid #ec84f9;
+    background-color: #ec84f9 ;
+}
+
+.botonDescargarPerfilAdmin2:hover{
+    transform: scale(1.05);
+    z-index: 10000;
+    background-color: #ec84f9 ;
+}
+
+.iconoPerfilAdmin{
+    position: relative;
+    top: 6px;
+}
+
+.emailInfoPerfil{
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    border-bottom: 1px solid rgb(58,58,58,0.2);
+    padding-bottom: 0.7rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 576px){
+    .botonDescargarPerfilAdmin{
+        border: 1px solid #dc47ef;
+        background-color: #dc47ef ;
+        color: white;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        padding-inline: 1.5rem;
+        font-size: 1.3rem;
+        transition: all .3s ease;
+    }
+    
+    .botonDescargarPerfilAdmin2{
+        border: 1px solid #ec84f9;
+        background-color: #dc47ef ;
+        color: white;
+        padding-inline: 1.5rem;
+        font-size: 1.3rem;
+        transition: all .3s ease;
+    }
+    
+    .botonEliminarPerfilAdmin{
+        border: 1px solid #ED2B2A;
+        background-color: #ED2B2A ;
+        color: white;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding-inline: 1.5rem;
+        font-size: 1.3rem;
+        transition: all .3s ease;
+    }
+
+    .cardPerfil{
+        margin-top: 1rem;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 992px){
+    .botonDescargarPerfilAdmin{
+        border: 1px solid #dc47ef;
+        background-color: #dc47ef ;
+        color: white;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        padding-inline: 2rem;
+        font-size: 1.3rem;
+        transition: all .3s ease;
+    }
+    
+    .botonDescargarPerfilAdmin2{
+        border: 1px solid #ec84f9;
+        background-color: #dc47ef ;
+        color: white;
+        padding-inline: 2rem;
+        font-size: 1.3rem;
+        transition: all .3s ease;
+    }
+    
+    .botonEliminarPerfilAdmin{
+        border: 1px solid #ED2B2A;
+        background-color: #ED2B2A ;
+        color: white;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding-inline: 2rem;
+        font-size: 1.3rem;
+        transition: all .3s ease;
+    }
+}
+
+@media (min-width: 992px){
+    .botonDescargarPerfilAdmin{
+        border: 1px solid #dc47ef;
+        background-color: #dc47ef ;
+        color: white;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        padding-inline: 3rem;
+        font-size: 1.3rem;
+        transition: all .3s ease;
+    }
+    
+    .botonDescargarPerfilAdmin2{
+        border: 1px solid #ec84f9;
+        background-color: #dc47ef ;
+        color: white;
+        padding-inline: 3rem;
+        font-size: 1.3rem;
+        transition: all .3s ease;
+    }
+    
+    .botonEliminarPerfilAdmin{
+        border: 1px solid #ED2B2A;
+        background-color: #ED2B2A ;
+        color: white;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding-inline: 3rem;
+        font-size: 1.3rem;
+        transition: all .3s ease;
+    }
+}

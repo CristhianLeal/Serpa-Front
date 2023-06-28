@@ -1,0 +1,91 @@
+.usuarioNavBarPerfil{
+    background-color: white;
+    font-size: 1.2rem;
+    position: absolute;
+    right: 30px;
+    z-index: 0;
+    top: 34px;
+}
+
+.iconoNavBarPerfil{
+    background-color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    top:-16px;
+    position: relative;
+    left: -10px;
+}
+
+.imagenNavBarPerfil{
+    width: 20px;
+    z-index: 2;
+}
+
+.cerrarSesionNavBarPerfil{
+    z-index: 10000;
+    position: relative;
+    left: -50px;
+    top: 54px;
+    z-index: 6;
+    color: white;
+    font-size: 1.3rem;
+}
+
+.cerrarSesionNavBarPerfil:hover{
+    cursor: pointer;
+}
+
+@media (max-width: 576px) {
+    .cajaPerfilNavBar{
+        display: none;
+    }
+}
+@media (min-width: 576px) and (max-width:992px) {
+    .cajaPerfilNavBar{
+        display: none;
+    }
+}
+@media (min-width: 992px) and (max-width:1650px) {
+    .usuarioNavBarPerfil{
+        background-color: white;
+        font-size: 1rem;
+        position: absolute;
+        right: 40px;
+        z-index: 0;
+        top: 28px;
+    }
+    
+    .iconoNavBarPerfil{
+        background-color: white;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        top:-14px;
+        position: relative;
+        left: -10px;
+    }
+    
+    .imagenNavBarPerfil{
+        width: 14px;
+        z-index: 2;
+    }
+
+    .cerrarSesionNavBarPerfil{
+        z-index: 10000;
+        position: relative;
+        left: -35px;
+        top: 40px;
+        z-index: 6;
+        color: white;
+        font-size: 1rem;
+    }
+}

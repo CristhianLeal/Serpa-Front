@@ -1,0 +1,101 @@
+.container-login{
+    background-color: white;
+}
+
+.fuente-600{
+    font-weight: 600
+}
+
+@media (max-width: 576px) {
+    .container-login{
+        width: 90%;
+        margin-top: 3rem;
+        padding-inline: 3rem;
+        padding-bottom: 2rem;
+        padding-top: 2rem;
+    }
+    .inputLogin input::placeholder {
+        font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {
+    .container-login{
+        width: 70%;
+        margin-top: 3rem;
+        padding-inline: 3rem;
+        padding-bottom: 2rem;
+        padding-top: 2rem;
+    }
+    .inputLogin input::placeholder {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .container-login{
+        width: 35%;
+        margin-top: 7.5rem;
+        padding-inline: 3rem;
+        padding-bottom: 2rem;
+        padding-top: 2rem;
+    }
+    .inputLogin input::placeholder {
+        font-size: 1rem;
+    }
+}
+
+.serpaTituloLogin{
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.btnOjo{
+    bottom: 5px;
+}
+
+.logoLogin{
+    width: 20px;
+    opacity: 0.7;
+}
+
+.passwordLogo{
+    top: 30px;
+    margin-left: 0.8rem;
+}
+
+.emailLogo{
+    top: 23px;
+    margin-left: 0.9rem;
+}
+
+.inputLogin{
+    padding-left: 2rem;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: black !important;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: none;
+}
+
+.form-control.is-invalid:focus {
+    box-shadow: none;
+    border-color: none;
+}
+
+.botonLogin{
+    border: 1px solid white;
+    background-color: #c03dd1;
+    border-radius: 5px;
+    padding-block: 0.4rem;
+    padding-inline: 1rem;
+    color: white;
+}

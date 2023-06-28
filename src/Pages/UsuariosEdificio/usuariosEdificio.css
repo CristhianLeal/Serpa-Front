@@ -1,0 +1,71 @@
+.tabla-usuarios {
+    background-color: white;
+    font-size: 25px;
+    border-radius: 10px;
+}
+
+.btn-edificio {
+    height: 35px;
+    width: 120px;
+    color: white;
+    background-color: #dc47ef;
+    border-radius: 10px;
+    border-color: #dc47ef;
+}
+
+.btn-edificio-2 {
+    height: 35px;
+    width: 240px;
+    color: white;
+    background-color: #dc47ef;
+    border-radius: 10px;
+    border-color: #dc47ef;
+}
+
+.tituloEdificio {
+    font-weight: 600;
+}
+
+.botonBorrarEdifcio {
+    background-color: #571422;
+    border: 1px solid #571422;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 600;
+}
+
+svg.bi-trash3-fill {
+    width: 15px;
+    height: 15px;
+}
+
+.swal2-confirm {
+    margin-left: 15px;
+}
+
+.swal2-cancel {
+    margin-right: 15px;
+}
+
+.divBotonAgregarUsuario {
+    text-align: start;
+}
+
+@media (max-width: 576px){
+    .responsive-tabla{
+        margin: 1rem;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {  
+    .responsive-tabla{
+        margin: 2rem;
+    }
+}
+
+@media (min-width: 992px){
+    .responsive-tabla{
+        margin: 3rem;
+    }
+}

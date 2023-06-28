@@ -1,0 +1,149 @@
+.navbar {
+    background: url("../../assets/fondoInveritdo.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.botonAgregarEdificioNavBar {
+    background-color: #7e1493;
+    border: 1px solid #7e1493;
+    border-bottom: 1px solid rgba(171, 171, 171, 0.5);
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 600;
+    width: 100%;
+    text-align: start;
+}
+
+.botonCerrarSesionNavBar {
+    background-color: #7e1493;
+    border: 1px solid #7e1493;
+    border-top: 1px solid rgba(171, 171, 171, 0.5);
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 600;
+    width: 100%;
+    text-align: start;
+}
+
+.botonCerrarSesionNavBarUsuario {
+    background-color: #7e1493;
+    border: 1px solid #7e1493;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 600;
+    width: 100%;
+    text-align: start;
+}
+
+.divBotonAgregarEdificioNavBar {
+    width: 100%;
+}
+
+.espaciadoNavBarCollapse {
+    margin-bottom: 7rem;
+}
+
+.navbar-toggler {
+    margin-right: 1rem;
+    background-color: transparent;
+    border: none;
+    color: transparent;
+}
+
+.burger {
+    position: relative;
+    width: 30px;
+    height: 20px;
+    background: transparent;
+    cursor: pointer;
+    display: block;
+}
+
+.burger input {
+    display: none;
+}
+
+.burger span {
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.burger span:nth-of-type(1) {
+    top: 0px;
+    transform-origin: left center;
+}
+
+.burger span:nth-of-type(2) {
+    top: 50%;
+    transform: translateY(-50%);
+    transform-origin: left center;
+}
+
+.burger span:nth-of-type(3) {
+    top: 100%;
+    transform-origin: left center;
+    transform: translateY(-100%);
+}
+
+.burger input:checked~span:nth-of-type(1) {
+    transform: rotate(45deg);
+    top: 0px;
+    left: 5px;
+}
+
+.burger input:checked~span:nth-of-type(2) {
+    transform: rotate(-45deg);
+    top: 21px;
+    left: 5px;
+}
+
+.burger input:checked~span:nth-of-type(3) {
+    width: 0%;
+    opacity: 0;
+}
+
+@media (max-width: 576px) {
+    .navbar-collapse {
+        background-color: #7e1493;
+    }
+
+    .containerNavBar {
+        margin-bottom: 0;
+    }
+
+    .navbar-expand-lg {
+        padding-bottom: 0;
+    }
+}
+
+@media (min-width: 576px) and (max-width:992px) {
+    .navbar-collapse {
+        background-color: #7e1493;
+    }
+
+    .navbar-expand-lg {
+        padding-bottom: 0;
+    }
+
+    .containerNavBar {
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 992px) {
+    .divBotonAgregarEdificioNavBar {
+        display: none;
+    }
+
+    .containerNavBar {
+        margin-bottom: 0rem;
+    }
+}

@@ -1,0 +1,91 @@
+.footerAdministrador{
+    color: black;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+}
+
+.tituloEdificios{
+    font-weight: 600;
+    letter-spacing: -2px;
+    opacity: 0.9;
+    padding-left: 4rem;
+}
+
+.cajaEdificiosBorde{
+    border: 2px solid rgb(192, 192, 192, 0.7);
+    border-radius: 20px;
+    padding-bottom: 4rem;
+} 
+
+.cajaGrandeEdificios{
+    min-height: 65vh;
+}
+
+@media (max-width: 576px){
+    .cajaEdificiosBorde{
+        gap: 0%;
+        justify-content: center;
+    }    
+    .tituloEdificios{
+        text-align: center;
+        padding-left: 0rem;
+    }
+    .divBotonAgregarEdificio{
+        display: none;
+    }
+    .cajaGrandeEdificios{
+        width: 90%;
+    }
+    .divCrearEdificio{
+        display: none;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {  
+    .cajaEdificiosBorde{
+        gap: 3.33%;
+    }    
+    .tituloEdificios{
+        text-align: center;
+        padding-left: 0rem;
+    }
+    .divBotonAgregarEdificio{
+        display: none;
+    }
+    .cajaGrandeEdificios{
+        width: 90%;
+    }
+    .divCrearEdificio{
+        display: none;
+    }
+}
+
+@media (min-width: 992px){
+    .cajaEdificiosBorde{
+        gap: 3%;
+    }    
+    .divBotonAgregarEdificio{
+        text-align: start;
+    }
+    .cajaGrandeEdificios{
+        width: 80%;
+    }
+}
+
+.botonAgregarEdificio{
+    background-color: #c03dd1 ;
+    border: 1px solid #c03dd1 ;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 600;
+}
+
+svg.bi-plus {
+    width: 20px;
+    height: 20px;
+}
+
+.divCrearEdificio{
+    text-align: start;
+}
