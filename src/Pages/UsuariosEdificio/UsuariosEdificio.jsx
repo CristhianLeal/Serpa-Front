@@ -184,6 +184,7 @@ const UsuariosEdificio = () => {
                                                 <th className="fs-6">Puerta</th>
                                                 <th className="fs-6">Tipo</th>
                                                 <th className="fs-6">Subir archivo</th>
+                                                <th className="fs-6">Ult. Expensas</th>
                                                 <th className="fs-6">Ult. Recibo</th>
                                                 <th className="fs-6">Ult. Comp. de pago</th>
                                                 <th className="fs-6">Perfil</th>

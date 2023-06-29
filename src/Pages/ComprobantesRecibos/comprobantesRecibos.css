@@ -50,9 +50,11 @@
 
 .botonDescargarCardComprobante{
     display: flex;
-    justify-content: end;
-    padding-right: 1rem;
-    margin-top: 1rem;
+    justify-content: center;
+    padding: 0px;
+    margin: 0px;
+    width: 30px;
+    height: 30px;
 }
 
 .botonDescargarCardComprobante button{
@@ -72,9 +74,11 @@
 
 .botonEliminarCardComprobante{
     display: flex;
-    justify-content: end;
-    padding-right: 0.5rem;
-    margin-top: 1rem;
+    justify-content: center;
+    padding: 0px;
+    margin: 0px;
+    width: 30px;
+    height: 30px;
 }
 
 .botonEliminarCardComprobante button{

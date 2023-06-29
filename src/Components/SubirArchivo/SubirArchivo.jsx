@@ -5,23 +5,61 @@ import './subirArchivo.css'
 
 function SubirArchivo(usuario) {
   const [loading, setLoading] = useState(false);
+  const [loadingr, setLoadingr] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [successr, setSuccessr] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
+    register: registerExpensa,
+    handleSubmit: handleSubmitExpensa,
+    formState: { errors: errorsExpensa },
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const {
+    register: registerRecibo,
+    handleSubmit: handleSubmitRecibo,
+    formState: { errors: errorsRecibo },
+  } = useForm();
+
+  const onSubmitExpensa = async (data) => {
     setLoading(true);
     try {
       const response = await axios.post(
         "https://serpaadministracionback.onrender.com/uploads/upload-file",
         {
-          file: data.file[0],
+          file: data.expensaFile[0],
+          userId: usuario.usuario._id,
+          tipo: 'expensa'
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      await axios.patch("https://serpaadministracionback.onrender.com/users/actualizar-fecha",{
+          id:usuario.usuario._id,
+          tipo: "expensa"
+      });
+      setLoading(false);
+      setSuccess(true);
+      window.location.reload(true);
+    } catch (error) {
+      setLoading(false);
+      setError(true);
+      setErrorMessage(error.message);
+    }
+  };
+
+  const onSubmitRecibo = async (data) => {
+    setLoadingr(true);
+    try {
+      const response = await axios.post(
+        "https://serpaadministracionback.onrender.com/uploads/upload-file",
+        {
+          file: data.reciboFile[0],
           userId: usuario.usuario._id,
           tipo: 'recibo'
         },
@@ -34,12 +72,12 @@ function SubirArchivo(usuario) {
       await axios.patch("https://serpaadministracionback.onrender.com/users/actualizar-fecha",{
           id:usuario.usuario._id,
           tipo: "recibo"
-      })
-      setLoading(false);
-      setSuccess(true);
-      window.location.reload(true)
+      });
+      setLoadingr(false);
+      setSuccessr(true);
+      window.location.reload(true);
     } catch (error) {
-      setLoading(false);
+      setLoadingr(false);
       setError(true);
       setErrorMessage(error.message);
     }
@@ -47,12 +85,12 @@ function SubirArchivo(usuario) {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className="formSubirArchivo">
+      <form onSubmit={handleSubmitExpensa(onSubmitExpensa)} className="formSubirArchivo">
         <div className="input-group w-100 mx-auto">
           <input
             type="file"
             className="form-control"
-            {...register("file", { required: true })}
+            {...registerExpensa("expensaFile", { required: true })}
           />
           <button type="submit" className={success ? "btn btn-success" : "btn btn-personalizado"}>
             {loading && (
@@ -62,7 +100,7 @@ function SubirArchivo(usuario) {
                 aria-hidden="true"
               ></span>
             )}
-            {!loading && !success && "Subir"}
+            {!loading && !success && "Subir Expensa"}
             {success && (
               <>
                 <span
@@ -73,7 +111,39 @@ function SubirArchivo(usuario) {
             )}
           </button>
         </div>
-        {errors.file && (
+        {errorsExpensa.expensaFile && (
+          <span className="text-danger fs-6">Seleccione un archivo.</span>
+        )}
+        {error && <p className="text-danger">{errorMessage}</p>}
+      </form>
+
+      <form onSubmit={handleSubmitRecibo(onSubmitRecibo)} className="formSubirArchivo">
+        <div className="input-group w-100 mx-auto">
+          <input
+            type="file"
+            className="form-control"
+            {...registerRecibo("reciboFile", { required: true })}
+          />
+          <button type="submit" className={successr ? "btn btn-success" : "btn btn-personalizado"}>
+            {loadingr && (
+              <span
+                className="spinner-border spinner-border-sm me-2"
+                role="status"
+                aria-hidden="true"
+              ></span>
+            )}
+            {!loadingr && !successr && "Subir Recibo"}
+            {successr && (
+              <>
+                <span
+                  className="me-2">
+                  <i className="bi bi-check text-light"></i>
+                </span>
+              </>
+            )}
+          </button>
+        </div>
+        {errorsRecibo.reciboFile && (
           <span className="text-danger fs-6">Seleccione un archivo.</span>
         )}
         {error && <p className="text-danger">{errorMessage}</p>}
