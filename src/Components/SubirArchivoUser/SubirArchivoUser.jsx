@@ -18,7 +18,7 @@ function SubirArchivoUser(usuario) {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:8000/uploads/upload-file",
+        "https://serpaadministracionback.onrender.com/uploads/upload-file",
         {
           file: data.file[0],
           userId: usuario.usuario._id,
@@ -30,7 +30,7 @@ function SubirArchivoUser(usuario) {
           },
         }
       );
-      await axios.patch("http://localhost:8000/users/actualizar-fecha",{
+      await axios.patch("https://serpaadministracionback.onrender.com/users/actualizar-fecha",{
           id:usuario.usuario._id,
           tipo: "comprobante"
       })

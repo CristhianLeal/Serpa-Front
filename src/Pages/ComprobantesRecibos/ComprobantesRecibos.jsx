@@ -23,7 +23,7 @@ function ComprobantesRecibos() {
 
     useEffect(() => {
         if (idUser !== undefined) {
-            axios.get(`http://localhost:8000/users/${idUser}`)
+            axios.get(`https://serpaadministracionback.onrender.com/users/${idUser}`)
                 .then((response) => {
                     setUsers(response.data);
                 })
@@ -32,7 +32,7 @@ function ComprobantesRecibos() {
                 })
 
             const getPdfs = async () => {
-                const response = await axios.get(`http://localhost:8000/uploads/getpdf/${idUser}`);
+                const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf/${idUser}`);
                 setComprobantes(response.data.comprobantes);
                 setRecibos(response.data.recibos);
                 setExpensas(response.data.expensas);

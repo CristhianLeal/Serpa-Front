@@ -80,7 +80,7 @@ const UsuariosEdificio = () => {
     };
 
     const borrarEdificio = async () => {
-        await axios.delete(`http://localhost:8000/edificio/delete-edificio`, {
+        await axios.delete(`https://serpaadministracionback.onrender.com/edificio/delete-edificio`, {
             data: {
                 name: edificioName
             }
@@ -92,7 +92,7 @@ const UsuariosEdificio = () => {
 
     useEffect(() => {
         const response = axios
-            .get(`http://localhost:8000/edificio/get-edificio`)
+            .get(`https://serpaadministracionback.onrender.com/edificio/get-edificio`)
             .then((response) => {
                 setEdificios(response.data);
             })
@@ -107,7 +107,7 @@ const UsuariosEdificio = () => {
     }, [edificios, edificioName]);
 
     useEffect(() => {
-        const response = axios.get(`http://localhost:8000/users/obtener-users`)
+        const response = axios.get(`https://serpaadministracionback.onrender.com/users/obtener-users`)
             .then((response) => {
                 const filteredUsuarios = response.data.filter((usuario) => usuario.edificio === edificioName);
                 setUsuarios(filteredUsuarios);
@@ -147,7 +147,7 @@ const UsuariosEdificio = () => {
               console.log(usuario);
       
               const response = await axios.post(
-                "http://localhost:8000/uploads/upload-file",
+                "https://serpaadministracionback.onrender.com/uploads/upload-file",
                 {
                   file: data.reciboFile[0],
                   userId: usuario._id,
@@ -160,7 +160,7 @@ const UsuariosEdificio = () => {
                 }
               );
       
-              await axios.patch("http://localhost:8000/users/actualizar-fecha",{
+              await axios.patch("https://serpaadministracionback.onrender.com/users/actualizar-fecha",{
                 id: usuario._id,
                 tipo: "recibo"
               });

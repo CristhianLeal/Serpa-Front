@@ -27,7 +27,7 @@ const CrearUsuario = () => {
 
     useEffect(() => {
         const response = axios
-          .get(`http://localhost:8000/edificio/get-edificio`)
+          .get(`https://serpaadministracionback.onrender.com/edificio/get-edificio`)
           .then((response) => {
             setEdificios(response.data);
           })
@@ -63,7 +63,7 @@ const CrearUsuario = () => {
             data.puerta = '-'
         }
         const respuesta = await axios.post(
-            `http://localhost:8000/users/crear-user`,
+            `https://serpaadministracionback.onrender.com/users/crear-user`,
             {
                 name: data.name.trim(),
                 surname: data.surname.trim(),

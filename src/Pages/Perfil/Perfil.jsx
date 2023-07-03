@@ -16,7 +16,7 @@ function Perfil() {
 
   useEffect(() =>{
     if (idUser !== undefined){
-        axios.get(`http://localhost:8000/users/${idUser}`)
+        axios.get(`https://serpaadministracionback.onrender.com/users/${idUser}`)
         .then((response) =>{
             setUsers(response.data);
         })
@@ -30,7 +30,7 @@ function Perfil() {
 const downloadPdf = async () => {
   setIsLoading(true);
   try {
-    const response = await axios.get(`http://localhost:8000/uploads/getpdf-ultimo/${idUser}`, {
+    const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-ultimo/${idUser}`, {
       responseType: 'blob',
     });
 

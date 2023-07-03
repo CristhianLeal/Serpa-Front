@@ -21,7 +21,7 @@ const Administrador = () => {
   
     useEffect(() =>{
         
-        const response = axios.get(`http://localhost:8000/edificio/get-edificio`)
+        const response = axios.get(`https://serpaadministracionback.onrender.com/edificio/get-edificio`)
         .then((response) =>{
             setEdificios(response.data);
         })
