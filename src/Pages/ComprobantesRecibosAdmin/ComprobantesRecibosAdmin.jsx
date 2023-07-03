@@ -13,6 +13,7 @@ function ComprobantesRecibosAdmin() {
     const [users, setUsers] = useState({})
     const [comprobantes, setComprobantes] = useState([])
     const [recibos, setRecibos] = useState([])
+    const [expensas, setExpensas] = useState([])
     const { id } = useParams();
     const idUser = id
     const tokenAdmin = Cookies.get('token');
@@ -35,6 +36,7 @@ function ComprobantesRecibosAdmin() {
                 const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf/${idUser}`);
                 setComprobantes(response.data.comprobantes);
                 setRecibos(response.data.recibos);
+                setExpensas(response.data.expensas);
             }
 
             getPdfs()
@@ -62,10 +64,10 @@ function ComprobantesRecibosAdmin() {
                     </div>
                 </div>
                 <div className='contenedorComprobantes'>
-                    {recibos === undefined ? (
-                        <div className='noHayDocumento'>No hay comprobantes subidos.</div>
+                    {expensas === undefined ? (
+                        <div className='noHayDocumento'>No hay expensas subidos.</div>
                     ) : (
-                        recibos.map(comprobante => (
+                        expensas.map(comprobante => (
                             <CardReciboUsuario comprobante={comprobante} user={users} key={comprobante.id} />
                         ))
                     )}

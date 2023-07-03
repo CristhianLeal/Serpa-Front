@@ -43,15 +43,22 @@ function SubirArchivoUser(usuario) {
       setErrorMessage(error.message);
     }
   };
+  function handleFileInputChange(event) {
+    const fileInput = event.target;
+    const selectedFileName = fileInput.files[0]?.name || 'Seleccione archivo';
+    fileInput.setAttribute("data-file-name", selectedFileName);
+  }
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="formSubirArchivo">
         <div className="input-group w-100 mx-auto">
           <input
             type="file"
             className="form-control"
             {...register("file", { required: true })}
+            data-file-name="Select File.."
+            onChange={handleFileInputChange}
           />
           <button type="submit" className={success ? "btn btn-success" : "btn btn-personalizado"}>
             {loading && (

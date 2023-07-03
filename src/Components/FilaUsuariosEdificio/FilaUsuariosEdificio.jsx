@@ -11,6 +11,7 @@ function FilaUsuariosEdificio(usuario) {
 
   const [error, setError] = useState(false)
   const [error2, setError2] = useState(false)
+  const [error3, setError3] = useState(false)
   const [isLoading, setIsLoading] = useState(false);
   const [isLoading2, setIsLoading2] = useState(false);
   const [isLoading3, setIsLoading3] = useState(false);
@@ -77,9 +78,9 @@ function FilaUsuariosEdificio(usuario) {
   };
 
   const downloadPdf3 = async () => {
-    setIsLoading(true);
+    setIsLoading3(true);
     try {
-      const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-ultimo/${usuario.usuario._id}`, {
+      const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-ultimo-expensa/${usuario.usuario._id}`, {
         responseType: 'blob',
       });
       
@@ -96,10 +97,10 @@ function FilaUsuariosEdificio(usuario) {
         link.setAttribute('download', downloadFilename);
         document.body.appendChild(link);
         link.click();
-        setIsLoading(false);
+        setIsLoading3(false);
       } else if (response.status === 206) {
-        setIsLoading(false);
-        setError(true);
+        setIsLoading3(false);
+        setError3(true);
       }
     } catch (error) {
       console.error(error);
@@ -158,7 +159,7 @@ function FilaUsuariosEdificio(usuario) {
             </button>
           )}
           {
-            error ? <div className='text-center text-muted fs-6'>¡No hay recibo!</div> : <></>
+            error3 ? <div className='text-center text-muted fs-6'>¡No hay expensas!</div> : <></>
           }
         </td>
 

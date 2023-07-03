@@ -8,6 +8,7 @@ function Perfil() {
 
   const [users, setUsers] = useState({})
   const [error, setError] = useState(false)
+  const [error2, setError2] = useState(false)
   const [isLoading, setIsLoading] = useState(false);
   const [isLoading2, setIsLoading2] = useState(false);
   const idUser = Cookies.get('id');
@@ -30,7 +31,7 @@ function Perfil() {
 const downloadPdf2 = async () => {
   setIsLoading2(true);
   try {
-    const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-ultimo/${idUser}`, {
+    const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-ultimo-expensa/${idUser}`, {
       responseType: 'blob',
     });
 
@@ -50,7 +51,7 @@ const downloadPdf2 = async () => {
       setIsLoading2(false);
     } else if (response.status === 206) {
       setIsLoading2(false);
-      setError(true);
+      setError2(true);
     }
     } catch (error) {
       console.error(error);
@@ -115,7 +116,7 @@ const downloadPdf = async () => {
                 }
               </button>
               {
-                error ? <div className='text-center text-muted fs-6'>¡No hay Expensa cargada!</div> : <></>
+                error2 ? <div className='text-center text-muted fs-6'>¡No hay Expensa cargada!</div> : <></>
               }
             </div>
             <div>

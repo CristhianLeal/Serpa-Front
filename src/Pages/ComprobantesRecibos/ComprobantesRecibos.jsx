@@ -14,6 +14,7 @@ function ComprobantesRecibos() {
     const [users, setUsers] = useState({})
     const [comprobantes, setComprobantes] = useState([])
     const [recibos, setRecibos] = useState([])
+    const [expensas, setExpensas] = useState([])
     const idUser = Cookies.get('id');
 
     if (idUser === undefined) {
@@ -34,6 +35,7 @@ function ComprobantesRecibos() {
                 const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf/${idUser}`);
                 setComprobantes(response.data.comprobantes);
                 setRecibos(response.data.recibos);
+                setExpensas(response.data.expensas);
             }
 
             getPdfs()
@@ -52,6 +54,18 @@ function ComprobantesRecibos() {
                     <button className="botonAgregarEdificio px-2 py-0" onClick={handleGoBack}>
                         <i className="bi bi-arrow-left-short"></i>
                     </button>
+                </div>
+            </div>
+            <div className='divComprobantes'>
+                <h4  className='pt-2'>EXPENSAS</h4>
+                <div className='contenedorComprobantes'>
+                    {expensas.length === 0 ? (
+                        <div className='noHayDocumento'>No hay expensas subidas.</div>
+                    ) : (
+                        expensas.map(comprobante => (
+                            <CardComprobanteUsuario comprobante={comprobante} user={users} key={comprobante.id} />
+                        ))
+                    )}
                 </div>
             </div>
             <div className='divComprobantes'>

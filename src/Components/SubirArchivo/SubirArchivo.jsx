@@ -83,6 +83,12 @@ function SubirArchivo(usuario) {
     }
   };
 
+  function handleFileInputChange(event) {
+    const fileInput = event.target;
+    const selectedFileName = fileInput.files[0]?.name || 'Seleccione archivo';
+    fileInput.setAttribute("data-file-name", selectedFileName);
+  }
+
   return (
     <>
       <form onSubmit={handleSubmitExpensa(onSubmitExpensa)} className="formSubirArchivo">
@@ -91,6 +97,8 @@ function SubirArchivo(usuario) {
             type="file"
             className="form-control"
             {...registerExpensa("expensaFile", { required: true })}
+            data-file-name="Select File.."
+            onChange={handleFileInputChange}
           />
           <button type="submit" className={success ? "btn btn-success" : "btn btn-personalizado"}>
             {loading && (
@@ -123,6 +131,8 @@ function SubirArchivo(usuario) {
             type="file"
             className="form-control"
             {...registerRecibo("reciboFile", { required: true })}
+            data-file-name="Select File.."
+            onChange={handleFileInputChange}
           />
           <button type="submit" className={successr ? "btn btn-success" : "btn btn-personalizado"}>
             {loadingr && (
