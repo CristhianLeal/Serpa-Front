@@ -8,9 +8,7 @@ function Perfil() {
 
   const [users, setUsers] = useState({})
   const [error, setError] = useState(false)
-  const [error2, setError2] = useState(false)
-  const [isLoading, setIsLoading] = useState(false);
-  const [isLoading2, setIsLoading2] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
   const idUser = Cookies.get('id');
   if (idUser === undefined) {
       window.location.replace('/')
@@ -28,35 +26,7 @@ function Perfil() {
     }
 }, [idUser])
 
-const downloadPdf2 = async () => {
-  setIsLoading2(true);
-  try {
-    const response = await axios.get(`http://localhost:8000/uploads/getpdf-ultimo-expensa/${idUser}`, {
-      responseType: 'blob',
-    });
 
-    if (response.status === 200) {
-      const date = new Date();
-      const month = new Intl.DateTimeFormat('es-ES', { month: 'long' }).format(date);
-
-      const fileExtension = response.data.type.split('/')[1];
-
-      const downloadFilename = `Comprobante Serpa - ${users.name} ${users.surname} - ${month}.${fileExtension}`;
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', downloadFilename);
-      document.body.appendChild(link);
-      link.click();
-      setIsLoading2(false);
-    } else if (response.status === 206) {
-      setIsLoading2(false);
-      setError2(true);
-    }
-    } catch (error) {
-      console.error(error);
-    }
-  };
 const downloadPdf = async () => {
   setIsLoading(true);
   try {
@@ -104,20 +74,6 @@ const downloadPdf = async () => {
             </div>
             <div>
               <i className="bi bi-door-closed-fill text-muted fs-3"></i> Piso {users.piso} | Puerta {users.puerta}
-            </div>
-            <div>
-              <button className='botonDocumentosPerfil' onClick={downloadPdf2}>
-                { !isLoading2 ?
-                <>DESCARGAR ULTIMA EXPENSA</>
-                :
-                <>
-                  <span className="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
-                </>
-                }
-              </button>
-              {
-                error2 ? <div className='text-center text-muted fs-6'>¡No hay Expensa cargada!</div> : <></>
-              }
             </div>
             <div>
               <button className='botonDocumentosPerfil' onClick={downloadPdf}>

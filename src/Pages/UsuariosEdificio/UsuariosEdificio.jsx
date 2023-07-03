@@ -134,40 +134,48 @@ const UsuariosEdificio = () => {
     };
 
     const {
-      register: registerExpensa,
-      handleSubmit: handleSubmitExpensa,
-      formState: { errors: errorsExpensa },
+    register: registerRecibo,
+    handleSubmit: handleSubmitRecibo,
+    formState: { errors: errorsRecibo },
     } = useForm();
 
-    const onSubmitExpensa = async (data) => {
-      setLoading(true);
-      try {
-        const response = await axios.post(
-          "http://localhost:8000/uploads/upload-file",
-          {
-            file: data.expensaFile[0],
-            userId: usuario.usuario._id,
-            tipo: 'expensa'
-          },
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-        await axios.patch("http://localhost:8000/users/actualizar-fecha",{
-            id:usuario.usuario._id,
-            tipo: "expensa"
-        });
-        setLoading(false);
-        setSuccess(true);
-        window.location.reload(true);
-      } catch (error) {
-        setLoading(false);
-        setError(true);
-        setErrorMessage(error.message);
-      }
-    };
+    const onSubmitRecibo = async (data) => {
+        setLoading(true);
+        try {
+          await Promise.all(
+            usuarios.map(async (usuario) => {
+              console.log(usuario);
+      
+              const response = await axios.post(
+                "http://localhost:8000/uploads/upload-file",
+                {
+                  file: data.reciboFile[0],
+                  userId: usuario._id,
+                  tipo: 'recibo'
+                },
+                {
+                  headers: {
+                    "Content-Type": "multipart/form-data",
+                  },
+                }
+              );
+      
+              await axios.patch("http://localhost:8000/users/actualizar-fecha",{
+                id: usuario._id,
+                tipo: "recibo"
+              });
+            })
+          );
+      
+          setLoading(false);
+          setSuccess(true);
+          window.location.reload(true);
+        } catch (error) {
+          setLoading(false);
+          setError(true);
+          setErrorMessage(error.message);
+        }
+      };
 
     function handleFileInputChange(event) {
       const fileInput = event.target;
@@ -188,72 +196,70 @@ const UsuariosEdificio = () => {
                     </div>
                     <h2 className='text-center text-white tituloEdificio mx-auto'>{edificioName}</h2>
                     <div className='d-flex responsive-tabla mt-5'>
-                        <div className="pb-5 w-100">
-                            <div className="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-6 col-xxl-6">
-                                <div className="d-flex flex-row">
-                                    <div className='divBotonAgregarUsuario ms-1 me-1 mb-2 col-3'>
-                                    <input
-                                        type="text"
-                                        className="form-control barraBusqueda"
-                                        onInput={(event) => searchCoinciden(event.target.value)}
-                                        placeholder="Buscar usuario..."
-                                        aria-label="Search"
-                                        aria-describedby="search-button"
-                                    />
-                                    </div>
-                                    <div className='divBotonAgregarUsuario pt-1 ms-1 me-1 mb-2 col-3'>
-                                        <a href={`/Crear/Usuario/${edificioName}`}>
-                                            <button className="botonAgregarEdificio">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 18">
-                                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                                </svg>
-                                                Crear usuario
-                                            </button>
-                                        </a>
-                                    </div>
-                                    <div className='divBotonAgregarUsuario pt-1 ms-1 me-1 mb-2 col-3'>
-                                    <button className="botonBorrarEdifcio" onClick={Apretado}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash3-fill" viewBox="0 0 10 18">
-                                            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                        </svg>
-                                        <span className='ms-2'>Borrar edificio</span>
-                                    </button>
-                                    </div>
-                                    <div className='divBotonAgregarUsuario pt-1 ms-1 me-1 mb-2 col-3'>
-                                        <form onSubmit={handleSubmitExpensa(onSubmitExpensa)} className="formSubirArchivo divBotonAgregarUsuario">
-                                            <div className="input-group w-100 mx-auto">
-                                            <input
-                                                type="file"
-                                                className="form-control"
-                                                {...registerExpensa("expensaFile", { required: true })}
-                                                data-file-name="Select File.."
-                                                onChange={handleFileInputChange}
-                                            />
-                                            <button type="submit" className={success ? "btn btn-success" : "btn btn-personalizado"}>
-                                                {loading && (
-                                                <span
-                                                    className="spinner-border spinner-border-sm me-2"
-                                                    role="status"
-                                                    aria-hidden="true"
-                                                ></span>
-                                                )}
-                                                {!loading && !success && "Subir Exp Gral"}
-                                                {success && (
-                                                <>
-                                                    <span
-                                                    className="me-2">
-                                                    <i className="bi bi-check text-light"></i>
-                                                    </span>
-                                                </>
-                                                )}
-                                            </button>
-                                            </div>
-                                            {errorsExpensa.expensaFile && (
-                                            <span className="text-danger fs-6">Seleccione un archivo.</span>
+                        <div className="pb-5 w-100">                            
+                            <div className="d-flex flex-sm-row flex-column justify-content-start align-items-center">
+                                <div className='divBotonAgregarUsuario ms-1 me-1 mb-2 '>
+                                <input
+                                    type="text"
+                                    className="form-control barraBusqueda"
+                                    onInput={(event) => searchCoinciden(event.target.value)}
+                                    placeholder="Buscar usuario..."
+                                    aria-label="Search"
+                                    aria-describedby="search-button"
+                                />
+                                </div>
+                                <div className='divBotonAgregarUsuario pt-1 ms-1 me-1 mb-2 '>
+                                    <a href={`/Crear/Usuario/${edificioName}`}>
+                                        <button className="botonAgregarEdificio">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-plus" viewBox="0 0 16 18">
+                                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                            </svg>
+                                            Crear usuario
+                                        </button>
+                                    </a>
+                                </div>
+                                <div className='divBotonAgregarUsuario pt-1 ms-1 me-1 mb-2 '>
+                                <button className="botonBorrarEdifcio" onClick={Apretado}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash3-fill" viewBox="0 0 10 18">
+                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                    </svg>
+                                    <span className='ms-2'>Borrar edificio</span>
+                                </button>
+                                </div>
+                                <div className='divBotonAgregarUsuario pt-1 ms-1 me-1 mb-2 '>
+                                    <form onSubmit={handleSubmitRecibo(onSubmitRecibo)} className="formSubirArchivo divBotonAgregarUsuario">
+                                        <div className="input-group w-100 mx-auto">
+                                        <input
+                                            type="file"
+                                            className="form-control"
+                                            {...registerRecibo("reciboFile", { required: true })}
+                                            data-file-name="Select File.."
+                                            onChange={handleFileInputChange}
+                                        />
+                                        <button type="submit" className={success ? "btn btn-success" : "btn btn-personalizado"}>
+                                            {loading && (
+                                            <span
+                                                className="spinner-border spinner-border-sm me-2"
+                                                role="status"
+                                                aria-hidden="true"
+                                            ></span>
                                             )}
-                                            {error && <p className="text-danger">{errorMessage}</p>}
-                                        </form>
-                                    </div>
+                                            {!loading && !success && "Subir Exp Gral"}
+                                            {success && (
+                                            <>
+                                                <span
+                                                className="me-2">
+                                                <i className="bi bi-check text-light"></i>
+                                                </span>
+                                            </>
+                                            )}
+                                        </button>
+                                        </div>
+                                        {errorsRecibo.reciboFile && (
+                                        <span className="text-danger fs-6">Seleccione un archivo.</span>
+                                        )}
+                                        {error && <p className="text-danger">{errorMessage}</p>}
+                                    </form>
                                 </div>
                             </div>
                             <div className='tabla-usuarios fs-6'>
@@ -267,7 +273,6 @@ const UsuariosEdificio = () => {
                                                 <th className="fs-6">Puerta</th>
                                                 <th className="fs-6">Tipo</th>
                                                 <th className="fs-6">Subir archivo</th>
-                                                <th className="fs-6">Ult. Expensas</th>
                                                 <th className="fs-6">Ult. Recibo</th>
                                                 <th className="fs-6">Ult. Comp. de pago</th>
                                                 <th className="fs-6">Perfil</th>
@@ -280,8 +285,7 @@ const UsuariosEdificio = () => {
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-                            
+                            </div>                            
                         </div>
                     </div>
                 </>
