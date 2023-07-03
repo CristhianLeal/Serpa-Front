@@ -69,3 +69,41 @@ svg.bi-trash3-fill {
         margin: 3rem;
     }
 }
+
+
+input[type=file]::-webkit-file-upload-button {
+    visibility: hidden !important;
+}
+
+input[type=file]::before {
+    content: attr(data-file-name);
+    display: inline-block;
+    background: #f2f2f2;
+    color: black;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.btn-personalizado{
+    background-color: #dc47ef;
+    border: solid 1px rgb(223,226,230);
+    padding-inline: 3px;
+    color: white;
+    font-size: 12px !important;
+    width: 90px !important;
+}
+
+.btn-personalizado:hover{
+    background-color: #d464e3;
+    border: solid 1px rgb(223,226,230);
+    color: white;
+}
+
+.formSubirArchivo{
+    width: 200px;
+    margin: auto;
+}

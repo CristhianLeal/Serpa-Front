@@ -24,7 +24,7 @@ const CrearEdificio = () => {
     const onSubmit = async (data) => {
         setLoading(true);
         const respuesta = await axios.post(
-            `https://serpaadministracionback.onrender.com/edificio/crear-edificio`,
+            `http://localhost:8000/edificio/crear-edificio`,
             {
                 name: data.name.trim(),
             }

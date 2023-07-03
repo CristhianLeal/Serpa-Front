@@ -18,7 +18,7 @@ const CambiarContraseña = () => {
     const onSubmit = async (data) => {
         setLoading(true);
         const respuesta = await axios.post(
-            `https://serpaadministracionback.onrender.com/users/recuperar-password-token`,
+            `http://localhost:8000/users/recuperar-password-token`,
             {
                 token: token,
                 password:data.password

@@ -23,7 +23,7 @@ function PerfilAdmin() {
 
   useEffect(() =>{
     if (idUser !== undefined){
-        axios.get(`https://serpaadministracionback.onrender.com/users/${idUser}`)
+        axios.get(`http://localhost:8000/users/${idUser}`)
         .then((response) =>{
             setUsers(response.data);
         })
@@ -36,7 +36,7 @@ function PerfilAdmin() {
 const downloadPdf = async () => {
   setIsLoading(true);
   try {
-    const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf/${idUser}`, {
+    const response = await axios.get(`http://localhost:8000/uploads/getpdf/${idUser}`, {
       responseType: 'blob',
     });
 
@@ -64,7 +64,7 @@ const downloadPdf = async () => {
   };
 
   const borrarUsuario = async () => {
-    await axios.delete(`https://serpaadministracionback.onrender.com/users/eliminar-user`, {
+    await axios.delete(`http://localhost:8000/users/eliminar-user`, {
         data: {
             id: idUser
         }})

@@ -22,7 +22,7 @@ function CardReciboUsuario(props) {
     const deletePdf = async () => {
         setIsLoadingEliminar(true);
         try {
-          const response = await axios.delete(`https://serpaadministracionback.onrender.com/uploads/delete-pdf/${comprobante.id}`);
+          const response = await axios.delete(`http://localhost:8000/uploads/delete-pdf/${comprobante.id}`);
           if (response.status === 200) {    
             setIsLoadingEliminar(false);
           } else if (response.status === 206) {
@@ -36,7 +36,7 @@ function CardReciboUsuario(props) {
     const downloadPdf = async () => {
         setIsLoading(true);
         try {
-          const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-especifico/${comprobante.id}`, {
+          const response = await axios.get(`http://localhost:8000/uploads/getpdf-especifico/${comprobante.id}`, {
             responseType: 'blob',
           });
       

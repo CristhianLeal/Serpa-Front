@@ -20,7 +20,7 @@ function FilaUsuariosEdificio(usuario) {
   const downloadPdf = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-ultimo/${usuario.usuario._id}`, {
+      const response = await axios.get(`http://localhost:8000/uploads/getpdf-ultimo/${usuario.usuario._id}`, {
         responseType: 'blob',
       });
       
@@ -50,7 +50,7 @@ function FilaUsuariosEdificio(usuario) {
   const downloadPdf2 = async () => {
     setIsLoading2(true);
     try {
-      const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-ultimo-comprobante/${usuario.usuario._id}`, {
+      const response = await axios.get(`http://localhost:8000/uploads/getpdf-ultimo-comprobante/${usuario.usuario._id}`, {
         responseType: 'blob',
       });
   
@@ -80,7 +80,7 @@ function FilaUsuariosEdificio(usuario) {
   const downloadPdf3 = async () => {
     setIsLoading3(true);
     try {
-      const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-ultimo-expensa/${usuario.usuario._id}`, {
+      const response = await axios.get(`http://localhost:8000/uploads/getpdf-ultimo-expensa/${usuario.usuario._id}`, {
         responseType: 'blob',
       });
       

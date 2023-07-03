@@ -18,7 +18,7 @@ function Perfil() {
 
   useEffect(() =>{
     if (idUser !== undefined){
-        axios.get(`https://serpaadministracionback.onrender.com/users/${idUser}`)
+        axios.get(`http://localhost:8000/users/${idUser}`)
         .then((response) =>{
             setUsers(response.data);
         })
@@ -31,7 +31,7 @@ function Perfil() {
 const downloadPdf2 = async () => {
   setIsLoading2(true);
   try {
-    const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-ultimo-expensa/${idUser}`, {
+    const response = await axios.get(`http://localhost:8000/uploads/getpdf-ultimo-expensa/${idUser}`, {
       responseType: 'blob',
     });
 
@@ -60,7 +60,7 @@ const downloadPdf2 = async () => {
 const downloadPdf = async () => {
   setIsLoading(true);
   try {
-    const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-ultimo/${idUser}`, {
+    const response = await axios.get(`http://localhost:8000/uploads/getpdf-ultimo/${idUser}`, {
       responseType: 'blob',
     });
 
