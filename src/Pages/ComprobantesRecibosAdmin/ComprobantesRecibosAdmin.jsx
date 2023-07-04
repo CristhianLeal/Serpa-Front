@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import icono from '../../assets/pdf.png'
 import SubirArchivoUser from '../../Components/SubirArchivoUser/SubirArchivoUser'
 import SubirArchivo from '../../Components/SubirArchivo/SubirArchivo'
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import CardComprobanteUsuario from '../../Components/CardComprobanteUsuario/CardComprobanteUsuario'
 import CardReciboUsuario from '../../Components/CardReciboUsuario/CardReciboUsuario'
 
 function ComprobantesRecibosAdmin() {
@@ -58,9 +56,26 @@ function ComprobantesRecibosAdmin() {
             </div>
             <div className='divComprobantes'>
                 <div className='d-flex flex-wrap contenedorTituloYSubirDocumento'>
-                    <h4 className='pt-2'>RECIBOS</h4>
+                    <h4 className='pt-2'>Expensas</h4>
                     <div className='d-flex justify-content-center'>
                         <SubirArchivo usuario={users} />
+                    </div>
+                </div>
+                <div className='contenedorComprobantes'>
+                    {expensas === undefined ? (
+                        <div className='noHayDocumento'>No hay expensas subidas.</div>
+                    ) : (
+                        expensas.map(comprobante => (
+                            <CardReciboUsuario comprobante={comprobante} user={users} key={comprobante.id} />
+                        ))
+                    )}
+                </div>
+            </div>
+            <div className='divComprobantes'>
+                <div className='d-flex flex-wrap contenedorTituloYSubirDocumento'>
+                    <h4 className='pt-2'>RECIBOS</h4>
+                    <div className='d-flex justify-content-center'>
+                        {/* <SubirArchivo usuario={users} /> */}
                     </div>
                 </div>
                 <div className='contenedorComprobantes'>

@@ -44,7 +44,7 @@ function CardReciboUsuario(props) {
       
             const fileExtension = response.data.type.split('/')[1];
       
-            const downloadFilename = `Comprobante Serpa - ${users.name} ${users.surname} - ${comprobante.date}.${fileExtension}`;
+            const downloadFilename = `Serpa - ${users.name} ${users.surname} - ${comprobante.date}.${fileExtension}`;
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
             link.href = url;

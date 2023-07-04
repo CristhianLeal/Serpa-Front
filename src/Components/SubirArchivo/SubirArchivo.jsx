@@ -91,6 +91,39 @@ function SubirArchivo(usuario) {
 
   return (
     <>
+      <form onSubmit={handleSubmitExpensa(onSubmitExpensa)} className="formSubirArchivo">
+        <div className="input-group w-100 mx-auto">
+          <input
+            type="file"
+            className="form-control"
+            {...registerExpensa("expensaFile", { required: true })}
+            data-file-name="Select File.."
+            onChange={handleFileInputChange}
+          />
+          <button type="submit" className={success ? "btn btn-success" : "btn btn-personalizado"}>
+            {loading && (
+              <span
+                className="spinner-border spinner-border-sm me-2"
+                role="status"
+                aria-hidden="true"
+              ></span>
+            )}
+            {!loading && !success && "Subir Expensa"}
+            {success && (
+              <>
+                <span
+                  className="me-2">
+                  <i className="bi bi-check text-light"></i>
+                </span>
+              </>
+            )}
+          </button>
+        </div>
+        {errorsExpensa.expensaFile && (
+          <span className="text-danger fs-6">Seleccione un archivo.</span>
+        )}
+        {error && <p className="text-danger">{errorMessage}</p>}
+      </form>
       <form onSubmit={handleSubmitRecibo(onSubmitRecibo)} className="formSubirArchivo">
         <div className="input-group w-100 mx-auto">
           <input

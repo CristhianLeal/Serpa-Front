@@ -90,7 +90,7 @@ function FilaUsuariosEdificio(usuario) {
   
         const fileExtension = response.data.type.split('/')[1];
   
-        const downloadFilename = `Recibo Serpa - ${usuario.usuario.name} ${usuario.usuario.surname} - ${month}.${fileExtension}`;
+        const downloadFilename = `Expensa Serpa - ${usuario.usuario.name} ${usuario.usuario.surname} - ${month}.${fileExtension}`;
         const url = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement('a');
         link.href = url;
@@ -137,6 +137,30 @@ function FilaUsuariosEdificio(usuario) {
           </OverlayTrigger>
         </td>
         <td className="border"><SubirArchivo usuario={usuario.usuario} /></td>
+        <td className='border'>
+          {isLoading3 ? (
+            <div className="d-flex justify-content-center mt-3">
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Descargando...</span>
+              </div>
+            </div>
+          ) : (
+            <button className="botonDescargarAdmin ps-3 pe-3 pt-1 pb-1" onClick={downloadPdf3}>
+              <div className='fs-6'>
+                {usuario.usuario.date !== "Sin archivo" && (
+                  <>
+                    <i className="bi bi-download" style={{ marginRight: '0.5rem' }}></i>
+                    {usuario.usuario.date}
+                  </>
+                )}
+                {usuario.usuario.date === "Sin archivo" && "---"}
+              </div>
+            </button>
+          )}
+          {
+            error3 ? <div className='text-center text-muted fs-6'>¡No hay expensas!</div> : <></>
+          }
+        </td>
         <td className='border'>
           {isLoading ? (
             <div className="d-flex justify-content-center mt-3">

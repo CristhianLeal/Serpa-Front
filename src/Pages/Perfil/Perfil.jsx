@@ -8,7 +8,9 @@ function Perfil() {
 
   const [users, setUsers] = useState({})
   const [error, setError] = useState(false)
+  const [error3, setError3] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [isLoading3, setIsLoading3] = useState(false);
   const idUser = Cookies.get('id');
   if (idUser === undefined) {
       window.location.replace('/')
@@ -57,6 +59,37 @@ const downloadPdf = async () => {
     }
   };
 
+const downloadPdf3 = async () => {
+  setIsLoading3(true);
+  try {
+    const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-ultimo-expensa/${idUser}`, {
+      responseType: 'blob',
+    });
+
+    if (response.status === 200) {
+      const date = new Date();
+      const month = new Intl.DateTimeFormat('es-ES', { month: 'long' }).format(date);
+
+      const fileExtension = response.data.type.split('/')[1];
+
+      const downloadFilename = `Expensa Serpa - ${users.name} ${users.surname} - ${month}.${fileExtension}`;
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', downloadFilename);
+      document.body.appendChild(link);
+      link.click();
+      setIsLoading3(false);
+    } else if (response.status === 206) {
+      setIsLoading3(false);
+      setError3(true);
+    }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
   const cerrarSesion = () => {
     Cookies.remove('id');
     Cookies.remove('token');
@@ -66,8 +99,12 @@ const downloadPdf = async () => {
     return (
       <div>
         <div className='cardPerfil mx-auto mt-5 pt-5 pb-5 px-2' >
-          <div className='text-center'><h1 className='tituloPerfil'>Mi Perfil</h1></div>
-          <div className='text-center mb-3'><h3 className='fs-6 text-muted'>{users.tipo}</h3></div>
+          <div className='text-center'>
+            <h1 className='tituloPerfil'>Mi Perfil</h1>
+          </div>
+          <div className='text-center mb-3'>
+            <h3 className='fs-6 text-muted'>{users.tipo}</h3>
+          </div>
           <div className='d-flex flex-column justify-content-center text-center'>
             <div>
               <i className="bi bi-buildings-fill text-muted fs-3"></i> Edificio {users.edificio}
@@ -75,6 +112,20 @@ const downloadPdf = async () => {
             <div>
               <i className="bi bi-door-closed-fill text-muted fs-3"></i> Piso {users.piso} | Puerta {users.puerta}
             </div>
+            <div>
+              <button className='botonDocumentosPerfil' onClick={downloadPdf3}>
+                { !isLoading3 ?
+                <>DESCARGAR ULTIMA EXPENSA</>
+                :
+                <>
+                  <span className="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
+                </>
+                }
+              </button>
+              {
+                error3 ? <div className='text-center text-muted fs-6'>¡No hay expensas cargadas!</div> : <></>
+              }
+            </div>            
             <div>
               <button className='botonDocumentosPerfil' onClick={downloadPdf}>
                 { !isLoading ?

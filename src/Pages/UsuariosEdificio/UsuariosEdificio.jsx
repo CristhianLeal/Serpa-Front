@@ -134,12 +134,12 @@ const UsuariosEdificio = () => {
     };
 
     const {
-    register: registerRecibo,
-    handleSubmit: handleSubmitRecibo,
-    formState: { errors: errorsRecibo },
+    register: registerExpensa,
+    handleSubmit: handleSubmitExpensa,
+    formState: { errors: errorsExpensa },
     } = useForm();
 
-    const onSubmitRecibo = async (data) => {
+    const onSubmitExpensa = async (data) => {
         setLoading(true);
         try {
           await Promise.all(
@@ -149,9 +149,9 @@ const UsuariosEdificio = () => {
               const response = await axios.post(
                 "https://serpaadministracionback.onrender.com/uploads/upload-file",
                 {
-                  file: data.reciboFile[0],
+                  file: data.expensaFile[0],
                   userId: usuario._id,
-                  tipo: 'recibo'
+                  tipo: 'expensa'
                 },
                 {
                   headers: {
@@ -162,7 +162,7 @@ const UsuariosEdificio = () => {
       
               await axios.patch("https://serpaadministracionback.onrender.com/users/actualizar-fecha",{
                 id: usuario._id,
-                tipo: "recibo"
+                tipo: "expensa"
               });
             })
           );
@@ -227,12 +227,12 @@ const UsuariosEdificio = () => {
                                 </button>
                                 </div>
                                 <div className='divBotonAgregarUsuario pt-1 ms-1 me-1 mb-2 '>
-                                    <form onSubmit={handleSubmitRecibo(onSubmitRecibo)} className="formSubirArchivo divBotonAgregarUsuario">
+                                    <form onSubmit={handleSubmitExpensa(onSubmitExpensa)} className="formSubirArchivo divBotonAgregarUsuario">
                                         <div className="input-group w-100 mx-auto">
                                         <input
                                             type="file"
                                             className="form-control"
-                                            {...registerRecibo("reciboFile", { required: true })}
+                                            {...registerExpensa("expensaFile", { required: true })}
                                             data-file-name="Select File.."
                                             onChange={handleFileInputChange}
                                         />
@@ -255,7 +255,7 @@ const UsuariosEdificio = () => {
                                             )}
                                         </button>
                                         </div>
-                                        {errorsRecibo.reciboFile && (
+                                        {errorsExpensa.expensaFile && (
                                         <span className="text-danger fs-6">Seleccione un archivo.</span>
                                         )}
                                         {error && <p className="text-danger">{errorMessage}</p>}
@@ -273,6 +273,7 @@ const UsuariosEdificio = () => {
                                                 <th className="fs-6">Puerta</th>
                                                 <th className="fs-6">Tipo</th>
                                                 <th className="fs-6">Subir archivo</th>
+                                                <th className="fs-6">Ult. Expensa</th>
                                                 <th className="fs-6">Ult. Recibo</th>
                                                 <th className="fs-6">Ult. Comp. de pago</th>
                                                 <th className="fs-6">Perfil</th>

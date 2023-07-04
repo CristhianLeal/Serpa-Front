@@ -57,6 +57,18 @@ function ComprobantesRecibos() {
                 </div>
             </div>
             <div className='divComprobantes'>
+                <h4  className='pt-2'>EXPENSAS</h4>
+                <div className='contenedorComprobantes'>
+                    {expensas === undefined ? (
+                        <div className='noHayDocumento'>No hay expensas subidas.</div>
+                    ) : (
+                        expensas.map(comprobante => (
+                            <CardComprobanteUsuario comprobante={comprobante} user={users} key={comprobante.id} />
+                        ))
+                    )}
+                </div>
+            </div>
+            <div className='divComprobantes'>
                 <h4  className='pt-2'>RECIBOS</h4>
                 <div className='contenedorComprobantes'>
                     {recibos === undefined ? (

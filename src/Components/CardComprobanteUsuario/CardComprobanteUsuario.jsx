@@ -40,7 +40,7 @@ function CardComprobanteUsuario(props) {
             <div className='cardComprobante'>
                 <div className='imagenPDFComprobante'><img src={icono} alt="Comprobante Serpa Administración"/></div>
                 <div className='fechaCardComprobante fs-6'>{comprobante.date}</div>
-                <div className='d-flex justify-content-end'>
+                <div className='d-flex justify-content-center'>
                     <div className='botonDescargarCardComprobante'>
                         <button onClick={downloadPdf}>
                             {isLoading ? (
