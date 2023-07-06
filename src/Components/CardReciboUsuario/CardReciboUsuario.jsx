@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import icono from '../../assets/pdf.png'
 import Swal from "sweetalert2";
 import axios from 'axios'
-import Cookies from 'js-cookie'
 
 function CardReciboUsuario(props) {
 

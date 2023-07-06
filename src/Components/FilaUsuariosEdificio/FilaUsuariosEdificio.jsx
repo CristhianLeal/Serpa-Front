@@ -150,7 +150,7 @@ function FilaUsuariosEdificio(usuario) {
                 {usuario.usuario.date !== "Sin archivo" && (
                   <>
                     <i className="bi bi-download" style={{ marginRight: '0.5rem' }}></i>
-                    {usuario.usuario.date}
+                    {usuario.usuario.dateExpensa !== undefined ? usuario.usuario.dateExpensa : '---'}
                   </>
                 )}
                 {usuario.usuario.date === "Sin archivo" && "---"}

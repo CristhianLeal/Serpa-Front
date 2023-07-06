@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function SubirArchivoUser(usuario) {
   const [loading, setLoading] = useState(false);
@@ -14,29 +15,86 @@ function SubirArchivoUser(usuario) {
     formState: { errors },
   } = useForm();
 
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger",
+    },
+    buttonsStyling: false,
+  });
+
   const onSubmit = async (data) => {
+    const Apretado = async () => {
+      swalWithBootstrapButtons
+        .fire({
+          title: `¿Estás seguro que quieres CARGAR este archivo?`,
+          text: "¡No podrás deshacer esto!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Confirmar",
+          cancelButtonText: "Cancelar",
+          reverseButtons: true,
+        })
+        .then(async (result) => {
+          if (result.isConfirmed) {
+            setLoading(true);
+            const swalLoading = Swal.fire({
+              title: "Procesando... ¡No cierre esta ventana!",
+              allowOutsideClick: false,
+              allowEscapeKey: false,
+              didOpen: () => {
+                Swal.showLoading();
+              },
+            });
+            try {
+              const response = await axios.post(
+                "https://serpaadministracionback.onrender.com/uploads/upload-file",
+                {
+                  file: data.file[0],
+                  userId: usuario.usuario._id,
+                  tipo: 'comprobante'
+                },
+                {
+                  headers: {
+                    "Content-Type": "multipart/form-data",
+                  },
+                }
+              );
+              await axios.patch("https://serpaadministracionback.onrender.com/users/actualizar-fecha",{
+                id:usuario.usuario._id,
+                tipo: "comprobante"
+              });
+              setLoading(false);
+              setSuccess(true);
+              // window.location.reload(true);
+            } catch (error) {
+              setLoading(false);
+              setError(true);
+              setErrorMessage(error.message);
+            }
+            swalLoading.close();
+          swalWithBootstrapButtons
+            .fire(
+              "¡Archivo CARGADO!",
+              "Se cargó el archivo con éxito.",
+              "success"
+            )
+            .then(() => {
+              window.location.reload(true);
+            });
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+            swalWithBootstrapButtons.fire(
+              "Cancelado",
+              "¡Estuvo cerca!",
+              "error"
+              );
+            window.location.reload(true)
+          }
+        });
+    };
     setLoading(true);
     try {
-      const response = await axios.post(
-        "https://serpaadministracionback.onrender.com/uploads/upload-file",
-        {
-          file: data.file[0],
-          userId: usuario.usuario._id,
-          tipo: 'comprobante'
-        },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      await axios.patch("https://serpaadministracionback.onrender.com/users/actualizar-fecha",{
-          id:usuario.usuario._id,
-          tipo: "comprobante"
-      })
-      setLoading(false);
-      setSuccess(true);
-      window.location.reload(true)
+      const response = await Apretado();
     } catch (error) {
       setLoading(false);
       setError(true);
