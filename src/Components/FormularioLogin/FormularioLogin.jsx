@@ -30,7 +30,10 @@ function FormularioLogin() {
             if (respuesta.data.user.role === "admin") {
                 Cookies.set('token', respuesta.data.token, { expires: 365 });
                 window.location.replace("/Administracion");
-            } else {
+            } else if(respuesta.data.user.tipo === 'Portero'){
+                window.location.replace("/PerfilPortero");
+            }
+            else {
                 window.location.replace("/Perfil");
             }
         }

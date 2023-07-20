@@ -6,7 +6,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import CardReciboUsuario from '../../Components/CardReciboUsuario/CardReciboUsuario'
 
-function ComprobantesRecibosAdmin() {
+function ComprobantesRecibosPortero() {
 
   const [users, setUsers] = useState({})
   const [comprobantes, setComprobantes] = useState([])
@@ -44,7 +44,7 @@ function ComprobantesRecibosAdmin() {
   }, [idUser]);
 
     const handleGoBack = () => {
-        window.location.replace(`/Administracion/Perfil/${idUser}`)
+        window.location.replace(`/Edificio/Prueba`)
     };
 
     return (
@@ -58,25 +58,9 @@ function ComprobantesRecibosAdmin() {
             </div>
             <div className='divComprobantes'>
                 <div className='d-flex flex-wrap contenedorTituloYSubirDocumento'>
-                    <h4 className='pt-2'>Expensas</h4>
+                    <h4 className='pt-2'>RECIBOS DE SUELDO</h4>
                     <div className='d-flex justify-content-center'>
                         <SubirArchivo usuario={users} />
-                    </div>
-                </div>
-                <div className='contenedorComprobantes'>
-                    {expensas === undefined ? (
-                        <div className='noHayDocumento'>No hay expensas subidas.</div>
-                    ) : (
-                        expensas.map(comprobante => (
-                            <CardReciboUsuario comprobante={comprobante} user={users} key={comprobante.id} />
-                        ))
-                    )}
-                </div>
-            </div>
-            <div className='divComprobantes'>
-                <div className='d-flex flex-wrap contenedorTituloYSubirDocumento'>
-                    <h4 className='pt-2'>RECIBOS</h4>
-                    <div className='d-flex justify-content-center'>
                     </div>
                 </div>
                 <div className='contenedorComprobantes'>
@@ -89,23 +73,8 @@ function ComprobantesRecibosAdmin() {
                     )}
                 </div>
             </div>
-            <div className='divComprobantes'>
-                <div className='d-flex flex-wrap contenedorTituloYSubirDocumento'>
-                    <h4 className='pt-2'>COMPROBANTES DE PAGO</h4>
-                    <div className='d-flex justify-content-center'>
-                        <SubirArchivoUser usuario={users} />
-                    </div>
-                </div>
-                <div className='contenedorComprobantes'>
-                    {comprobantes === undefined ? (
-                        <div className='noHayDocumento'>No hay recibos subidos.</div>
-                    ) : (comprobantes.map(comprobante => (
-                        <CardReciboUsuario comprobante={comprobante} user={users} key={comprobante.id} />
-                    )))}
-                </div>
-            </div>
         </>
     )
 }
 
-export default ComprobantesRecibosAdmin
+export default ComprobantesRecibosPortero

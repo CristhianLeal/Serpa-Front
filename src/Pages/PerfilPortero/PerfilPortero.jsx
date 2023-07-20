@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import './perfil.css'
+import './perfilportero.css'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import SubirArchivoUser from '../../Components/SubirArchivoUser/SubirArchivoUser'
 
-function Perfil() {
+function PerfilPortero() {
 
   const [users, setUsers] = useState({})
   const [error, setError] = useState(false)
@@ -47,7 +47,7 @@ const downloadPdf = async () => {
 
       const fileExtension = response.data.type.split('/')[1];
 
-      const downloadFilename = `Comprobante Serpa - ${users.name} ${users.surname} - ${month}.${fileExtension}`;
+      const downloadFilename = `Recibo de sueldo Serpa - ${users.name} ${users.surname} - ${month}.${fileExtension}`;
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;
@@ -63,37 +63,6 @@ const downloadPdf = async () => {
       console.error(error);
     }
   };
-
-const downloadPdf3 = async () => {
-  setIsLoading3(true);
-  try {
-    const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-ultimo-expensa/${edificio._id}`, {
-      responseType: 'blob',
-    });
-
-    if (response.status === 200) {
-      const date = new Date();
-      const month = new Intl.DateTimeFormat('es-ES', { month: 'long' }).format(date);
-
-      const fileExtension = response.data.type.split('/')[1];
-
-      const downloadFilename = `Expensa Serpa - ${users.name} ${users.surname} - ${month}.${fileExtension}`;
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', downloadFilename);
-      document.body.appendChild(link);
-      link.click();
-      setIsLoading3(false);
-    } else if (response.status === 206) {
-      setIsLoading3(false);
-      setError3(true);
-    }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
 
   const cerrarSesion = () => {
     Cookies.remove('id');
@@ -113,24 +82,7 @@ const downloadPdf3 = async () => {
           <div className='d-flex flex-column justify-content-center text-center'>
             <div>
               <i className="bi bi-buildings-fill text-muted fs-3"></i> Edificio {users.edificio}
-            </div>
-            <div>
-              <i className="bi bi-door-closed-fill text-muted fs-3"></i> Piso {users.piso} | Puerta {users.puerta}
-            </div>
-            <div>
-              <button className='botonDocumentosPerfil' onClick={downloadPdf3}>
-                { !isLoading3 ?
-                <>DESCARGAR ULTIMA EXPENSA</>
-                :
-                <>
-                  <span className="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>
-                </>
-                }
-              </button>
-              {
-                error3 ? <div className='text-center text-muted fs-6'>¡No hay expensas cargadas!</div> : <></>
-              }
-            </div>            
+            </div>          
             <div>
               <button className='botonDocumentosPerfil' onClick={downloadPdf}>
                 { !isLoading ?
@@ -152,12 +104,10 @@ const downloadPdf3 = async () => {
                 </button>
               </a>
             </div>
-            <h6 className='tituloSubirComprobantePerfil'>SUBIR COMPROBANTE DE PAGO</h6>
-            <SubirArchivoUser usuario={users}/>
           </div>
         </div>
       </div>
     )
   }
 
-export default Perfil
+export default PerfilPortero

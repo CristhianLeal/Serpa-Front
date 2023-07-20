@@ -66,7 +66,6 @@ function SubirArchivoUser(usuario) {
               });
               setLoading(false);
               setSuccess(true);
-              // window.location.reload(true);
             } catch (error) {
               setLoading(false);
               setError(true);

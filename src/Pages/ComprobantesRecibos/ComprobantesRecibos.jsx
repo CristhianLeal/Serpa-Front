@@ -4,7 +4,6 @@ import icono from '../../assets/pdf.png'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import SubirArchivoUser from '../../Components/SubirArchivoUser/SubirArchivoUser'
-import SubirArchivo from '../../Components/SubirArchivo/SubirArchivo'
 import CardComprobanteUsuario from '../../Components/CardComprobanteUsuario/CardComprobanteUsuario'
 import CardReciboUsuario from '../../Components/CardReciboUsuario/CardReciboUsuario'
 
@@ -15,6 +14,7 @@ function ComprobantesRecibos() {
     const [comprobantes, setComprobantes] = useState([])
     const [recibos, setRecibos] = useState([])
     const [expensas, setExpensas] = useState([])
+    const [selectedEdificio, setSelectedEdificio] = useState(null);
     const idUser = Cookies.get('id');
 
     if (idUser === undefined) {
@@ -22,29 +22,33 @@ function ComprobantesRecibos() {
     }
 
     useEffect(() => {
-        if (idUser !== undefined) {
-            axios.get(`https://serpaadministracionback.onrender.com/users/${idUser}`)
-                .then((response) => {
-                    setUsers(response.data);
-                })
-                .catch((error) => {
-                    console.error(error);
-                })
-
-            const getPdfs = async () => {
-                const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf/${idUser}`);
-                setComprobantes(response.data.comprobantes);
-                setRecibos(response.data.recibos);
-                setExpensas(response.data.expensas);
+        const fetchUser = async () => {
+          if (idUser !== undefined) {
+            try {
+              const response = await axios.get(`https://serpaadministracionback.onrender.com/users/${idUser}`);
+              setUsers(response.data);
+              const response2 = await axios.get(`https://serpaadministracionback.onrender.com/edificio/getEdificioName/${response.data.edificio}`)
+              setSelectedEdificio(response2.data);
+              const response3 = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf/${idUser}`);
+              setComprobantes(response3.data.comprobantes);
+              setRecibos(response3.data.recibos);
+              const response4 = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf/${response2.data._id}`);
+              setExpensas(response4.data.expensas);
+            } catch (error) {
+              console.error(error);
             }
-
-            getPdfs()
-        }
-    }, [idUser])
-
+          }
+        };
+      
+        fetchUser();
+      }, [idUser]);
 
     const handleGoBack = () => {
-        window.location.replace(`/Perfil`)
+        if(users.tipo === 'Portero'){
+          window.location.replace(`/PerfilPortero`)
+        }else{
+          window.location.replace(`/Perfil`)
+        }
     };
 
     return (
@@ -56,18 +60,20 @@ function ComprobantesRecibos() {
                     </button>
                 </div>
             </div>
-            <div className='divComprobantes'>
-                <h4  className='pt-2'>EXPENSAS</h4>
+            {users.tipo !== 'Portero' ? (
+              <div className='divComprobantes'>
+                <h4 className='pt-2'>EXPENSAS</h4>
                 <div className='contenedorComprobantes'>
-                    {expensas === undefined ? (
-                        <div className='noHayDocumento'>No hay expensas subidas.</div>
-                    ) : (
-                        expensas.map(comprobante => (
-                            <CardComprobanteUsuario comprobante={comprobante} user={users} key={comprobante.id} />
-                        ))
-                    )}
+                  {expensas === undefined ? (
+                    <div className='noHayDocumento'>No hay expensas subidas.</div>
+                  ) : (
+                    expensas.map(comprobante => (
+                      <CardComprobanteUsuario comprobante={comprobante} user={users} key={comprobante.id} />
+                    ))
+                  )}
                 </div>
-            </div>
+              </div>
+            ) : null}
             <div className='divComprobantes'>
                 <h4  className='pt-2'>RECIBOS</h4>
                 <div className='contenedorComprobantes'>
@@ -80,6 +86,7 @@ function ComprobantesRecibos() {
                     )}
                 </div>
             </div>
+            {users.tipo !== 'Portero' ? (
             <div className='divComprobantes'>
                 <div className='d-flex flex-wrap contenedorTituloYSubirDocumento'>
                     <h4 className='pt-2'>COMPROBANTES DE PAGO</h4>
@@ -95,6 +102,7 @@ function ComprobantesRecibos() {
                     )))}
                 </div>
             </div>
+            ) : null}
         </>
     )
 }

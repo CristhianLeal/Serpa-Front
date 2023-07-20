@@ -137,7 +137,7 @@ const CrearUsuario = () => {
                             <div className="form-group col-12 col-sm-12 col-md-9 col-lg-9 col-xl-8 col-xxl-7  mx-auto">
                                 <input
                                     type="text"
-                                    placeholder='Correo Electrónico'
+                                    placeholder='Correo Electrónico / Usuario'
                                     className={`form-control mt-2 mb-2 pt-2 pb-2 ${errors.email ? "is-invalid" : ""}`}
                                     {...register("email", {
                                         required: true,
@@ -203,6 +203,7 @@ const CrearUsuario = () => {
                                     <option className='text-dark' value="Local">Local</option>
                                     <option className='text-dark' value="Oficina">Oficina</option>
                                     <option className='text-dark' value="Cochera">Cochera</option>
+                                    <option className='text-dark' value="Portero">Portero</option>
                                 </select>
                             </div>
                             <button className="btn-crear-usuario mt-3 mb-3">

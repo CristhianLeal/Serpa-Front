@@ -92,7 +92,7 @@ function SubirArchivo(usuario) {
   return (
     <>
       <div className="d-flex flex-column">    
-        <form onSubmit={handleSubmitExpensa(onSubmitExpensa)} className="formSubirArchivo">
+        {/* <form onSubmit={handleSubmitExpensa(onSubmitExpensa)} className="formSubirArchivo">
           <div className="input-group w-100 mx-auto">
             <input
               type="file"
@@ -124,7 +124,7 @@ function SubirArchivo(usuario) {
             <span className="text-danger fs-6">Seleccione un archivo.</span>
           )}
           {error && <p className="text-danger">{errorMessage}</p>}
-        </form>
+        </form> */}
         <form onSubmit={handleSubmitRecibo(onSubmitRecibo)} className="formSubirArchivo">
           <div className="input-group w-100 mx-auto">
             <input

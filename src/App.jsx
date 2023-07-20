@@ -2,6 +2,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import Inicio from './Pages/Inicio/Inicio';
 import './App.css'
 import Perfil from './Pages/Perfil/Perfil';
+import PerfilPortero from './Pages/PerfilPortero/PerfilPortero';
 import Administrador from './Pages/Admininstrador/Administrador';
 import CrearUsuario from './Pages/CrearUsuario/CrearUsuario';
 import UsuariosEdificio from './Pages/UsuariosEdificio/UsuariosEdificio';
@@ -14,6 +15,7 @@ import Footer from './Components/Footer/Footer';
 import EditarUsuario from './Pages/EditarUsuario/EditarUsuario';
 import ComprobantesRecibos from './Pages/ComprobantesRecibos/ComprobantesRecibos';
 import ComprobantesRecibosAdmin from './Pages/ComprobantesRecibosAdmin/ComprobantesRecibosAdmin';
+import ComprobantesRecibosPortero from './Pages/ComprobantesRecibosPortero/ComprobantesRecibosPortero';
 import PerfilAdmin from './Pages/PerfilAdmin/PerfilAdmin';
 
 function App() {
@@ -29,8 +31,10 @@ function App() {
         <Route path="/Crear/Usuario/:edificioName" element={<CrearUsuario   />} />
         <Route path="/Administracion/Editar/Usuario/:id/:edificioName" element={<EditarUsuario/>} />
         <Route path="/Administracion/Usuario/Documentos/:id" element={<ComprobantesRecibosAdmin/>} />
+        <Route path="/Administracion/Portero/Documentos/:id" element={<ComprobantesRecibosPortero/>} />
         <Route path="/Edificio/:edificioName" element={<UsuariosEdificio />} />
         <Route path="/Perfil" element={<Perfil />} />
+        <Route path="/PerfilPortero" element={<PerfilPortero />} />
         <Route path="/Administracion/Perfil/:id" element={<PerfilAdmin />} />
         <Route path="/Perfil/Documentos" element={<ComprobantesRecibos />} />
         <Route path="/Administracion/Recuperar-contraseña/:id" element={<CambiarContraseñaAdmin />} />

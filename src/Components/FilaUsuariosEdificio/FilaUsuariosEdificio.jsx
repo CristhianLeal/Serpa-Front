@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import SubirArchivo from '../SubirArchivo/SubirArchivo'
 import axios from 'axios'
 import './filaUsuariosEdificio.css'
-import Swal from "sweetalert2";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
@@ -16,6 +15,7 @@ function FilaUsuariosEdificio(usuario) {
   const [isLoading2, setIsLoading2] = useState(false);
   const [isLoading3, setIsLoading3] = useState(false);
   const [tipo, setTipo] = useState("");
+  const [edificio, setEdificio] = useState(null);
 
   const downloadPdf = async () => {
     setIsLoading(true);
@@ -27,9 +27,7 @@ function FilaUsuariosEdificio(usuario) {
       if (response.status === 200) {
         const date = new Date();
         const month = new Intl.DateTimeFormat('es-ES', { month: 'long' }).format(date);
-  
         const fileExtension = response.data.type.split('/')[1];
-  
         const downloadFilename = `Recibo Serpa - ${usuario.usuario.name} ${usuario.usuario.surname} - ${month}.${fileExtension}`;
         const url = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement('a');
@@ -80,10 +78,9 @@ function FilaUsuariosEdificio(usuario) {
   const downloadPdf3 = async () => {
     setIsLoading3(true);
     try {
-      const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-ultimo-expensa/${usuario.usuario._id}`, {
-        responseType: 'blob',
-      });
-      
+      const edificiosResponse = await axios.get(`https://serpaadministracionback.onrender.com/edificio/getEdificioName/${usuario.usuario.edificio}`);
+      const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-ultimo-expensa/${edificiosResponse.data._id}`, {
+        responseType: 'blob',});
       if (response.status === 200) {
         const date = new Date();
         const month = new Intl.DateTimeFormat('es-ES', { month: 'long' }).format(date);
@@ -116,7 +113,19 @@ function FilaUsuariosEdificio(usuario) {
       setTipo("O");
     } else if (usuario.usuario.tipo === "Cochera") {
       setTipo("C");
+    } else if (usuario.usuario.tipo === "Portero") {
+      setTipo("P");
     }
+
+    const fetchData = async () => {
+        try {
+          const response = await axios.get(`https://serpaadministracionback.onrender.com/edificio/getEdificioName/${usuario.usuario.edificio}`)
+          setEdificio(response.data)
+        } catch (error) {
+          console.error(error);
+        }
+    };
+    fetchData();
   }, [usuario])
 
   return (
@@ -147,13 +156,13 @@ function FilaUsuariosEdificio(usuario) {
           ) : (
             <button className="botonDescargarAdmin ps-3 pe-3 pt-1 pb-1" onClick={downloadPdf3}>
               <div className='fs-6'>
-                {usuario.usuario.date !== "Sin archivo" && (
+                {edificio?.date !== "Sin archivo" && (
                   <>
                     <i className="bi bi-download" style={{ marginRight: '0.5rem' }}></i>
-                    {usuario.usuario.dateExpensa !== undefined ? usuario.usuario.dateExpensa : '---'}
+                    {edificio?.dateExpensa !== undefined ? edificio?.dateExpensa : '---'}
                   </>
                 )}
-                {usuario.usuario.date === "Sin archivo" && "---"}
+                {edificio?.date === "Sin archivo" && "---"}
               </div>
             </button>
           )}
@@ -185,7 +194,7 @@ function FilaUsuariosEdificio(usuario) {
             error ? <div className='text-center text-muted fs-6'>¡No hay recibo!</div> : <></>
           }
         </td>
-        <td>
+        <td className='border'>
         {isLoading2 ? (
           <div className="d-flex justify-content-center mt-3">
             <div className="spinner-border" role="status">

@@ -1,0 +1,21 @@
+.botonDescargarAdmin{
+    border: 1px solid #dc47ef;
+    background-color: #dc47ef ;
+    color: white;
+    border-radius: 10px;
+    padding-inline: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.botonEliminarAdmin{
+    border: 1px solid #ED2B2A;
+    background-color: #ED2B2A ;
+    color: white;
+    border-radius: 10px;
+    padding-inline: 3rem;
+    font-size: 1.3rem;
+}
+
+.columnaSubirArchivo{
+    min-width: 250px;
+}
