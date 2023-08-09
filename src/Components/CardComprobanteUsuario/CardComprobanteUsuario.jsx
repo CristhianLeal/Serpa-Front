@@ -11,7 +11,7 @@ function CardComprobanteUsuario(props) {
     const downloadPdf = async () => {
         setIsLoading(true);
         try {
-            const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-especifico/${comprobante.id}`,
+            const response = await axios.get(`http://serpaadministrador.com.ar:8000/uploads/getpdf-especifico/${comprobante.id}`,
                 {
                     responseType: 'blob',
                 }

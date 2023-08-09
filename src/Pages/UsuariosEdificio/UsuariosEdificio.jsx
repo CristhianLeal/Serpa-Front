@@ -82,7 +82,7 @@ const UsuariosEdificio = () => {
   };
 
   const borrarEdificio = async () => {
-      await axios.delete(`https://serpaadministracionback.onrender.com/edificio/delete-edificio`, {
+      await axios.delete(`http://serpaadministrador.com.ar:8000/edificio/delete-edificio`, {
           data: {
               name: edificioName
           }
@@ -93,7 +93,7 @@ const UsuariosEdificio = () => {
   }
 
   useEffect(() => {
-    const response = axios.get(`https://serpaadministracionback.onrender.com/edificio/get-edificio`)
+    const response = axios.get(`http://serpaadministrador.com.ar:8000/edificio/get-edificio`)
       .then((response) => {
         setEdificios(response.data)
       })
@@ -109,7 +109,7 @@ const UsuariosEdificio = () => {
   }, [edificios, edificioName]);
 
   useEffect(() => {
-    const response = axios.get(`https://serpaadministracionback.onrender.com/users/obtener-users`)
+    const response = axios.get(`http://serpaadministrador.com.ar:8000/users/obtener-users`)
       .then((response) => {
         const filteredUsuarios = response.data.filter((usuario) => usuario.edificio === edificioName);
         setUsuarios(filteredUsuarios);
@@ -166,7 +166,7 @@ const UsuariosEdificio = () => {
             });
             try {
               const response = await axios.post(
-                    "https://serpaadministracionback.onrender.com/uploads/upload-file",
+                    "http://serpaadministrador.com.ar:8000/uploads/upload-file",
                     {
                       file: data.expensaFile[0],
                       userId: selectedEdificio._id,
@@ -178,7 +178,7 @@ const UsuariosEdificio = () => {
                       },
                     }
                   );
-                  await axios.patch(`https://serpaadministracionback.onrender.com/edificio/updateEdif/${selectedEdificio._id}`,{
+                  await axios.patch(`http://serpaadministrador.com.ar:8000/edificio/updateEdif/${selectedEdificio._id}`,{
                   id: selectedEdificio._id,
                   tipo: "expensa"
                   });

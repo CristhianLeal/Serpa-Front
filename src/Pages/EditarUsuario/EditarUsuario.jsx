@@ -28,7 +28,7 @@ const EditarUsuario = () => {
 
         const getUser = async () =>{
         const respuesta = await axios
-        .get(`https://serpaadministracionback.onrender.com/users/${id}`)
+        .get(`http://serpaadministrador.com.ar:8000/users/${id}`)
         .then((response) => {
             setUser(response.data);
             if (response.status === 200) {
@@ -91,7 +91,7 @@ const EditarUsuario = () => {
             data.puerta = '-'
         }
         const respuesta = await axios.patch(
-            `https://serpaadministracionback.onrender.com/users/editar-user`,
+            `http://serpaadministrador.com.ar:8000/users/editar-user`,
             {
                 id,
                 name: data.name.trim(),

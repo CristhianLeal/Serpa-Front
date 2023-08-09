@@ -21,9 +21,9 @@ function PerfilPortero() {
     const fetchUser = async () => {
       if (idUser !== undefined) {
         try {
-          const response = await axios.get(`https://serpaadministracionback.onrender.com/users/${idUser}`);
+          const response = await axios.get(`http://serpaadministrador.com.ar:8000/users/${idUser}`);
           setUsers(response.data);
-          const response2 = await axios.get(`https://serpaadministracionback.onrender.com/edificio/getEdificioName/${response.data.edificio}`)
+          const response2 = await axios.get(`http://serpaadministrador.com.ar:8000/edificio/getEdificioName/${response.data.edificio}`)
           setEdificio(response2.data);
         } catch (error) {
           console.error(error);
@@ -37,7 +37,7 @@ function PerfilPortero() {
 const downloadPdf = async () => {
   setIsLoading(true);
   try {
-    const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-ultimo/${idUser}`, {
+    const response = await axios.get(`http://serpaadministrador.com.ar:8000/uploads/getpdf-ultimo/${idUser}`, {
       responseType: 'blob',
     });
 

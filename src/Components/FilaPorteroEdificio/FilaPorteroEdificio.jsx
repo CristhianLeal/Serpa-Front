@@ -16,7 +16,7 @@ function FilaPorteroEdificio(usuario) {
   const downloadPdf = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(`https://serpaadministracionback.onrender.com/uploads/getpdf-ultimo/${usuario.usuario._id}`, {
+      const response = await axios.get(`http://serpaadministrador.com.ar:8000/uploads/getpdf-ultimo/${usuario.usuario._id}`, {
         responseType: 'blob',
       });
       
@@ -56,7 +56,7 @@ function FilaPorteroEdificio(usuario) {
 
     const fetchData = async () => {
         try {
-          const response = await axios.get(`https://serpaadministracionback.onrender.com/edificio/getEdificioName/${usuario.usuario.edificio}`)
+          const response = await axios.get(`http://serpaadministrador.com.ar:8000/edificio/getEdificioName/${usuario.usuario.edificio}`)
           setEdificio(response.data)
         } catch (error) {
           console.error(error);

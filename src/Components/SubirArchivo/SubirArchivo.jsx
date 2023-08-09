@@ -27,7 +27,7 @@ function SubirArchivo(usuario) {
     setLoading(true);
     try {
       const response = await axios.post(
-        "https://serpaadministracionback.onrender.com/uploads/upload-file",
+        "http://serpaadministrador.com.ar:8000/uploads/upload-file",
         {
           file: data.expensaFile[0],
           userId: usuario.usuario._id,
@@ -39,7 +39,7 @@ function SubirArchivo(usuario) {
           },
         }
       );
-      await axios.patch("https://serpaadministracionback.onrender.com/users/actualizar-fecha",{
+      await axios.patch("http://serpaadministrador.com.ar:8000/users/actualizar-fecha",{
           id:usuario.usuario._id,
           tipo: "expensa"
       });
@@ -57,7 +57,7 @@ function SubirArchivo(usuario) {
     setLoadingr(true);
     try {
       const response = await axios.post(
-        "https://serpaadministracionback.onrender.com/uploads/upload-file",
+        "http://serpaadministrador.com.ar:8000/uploads/upload-file",
         {
           file: data.reciboFile[0],
           userId: usuario.usuario._id,
@@ -69,7 +69,7 @@ function SubirArchivo(usuario) {
           },
         }
       );
-      await axios.patch("https://serpaadministracionback.onrender.com/users/actualizar-fecha",{
+      await axios.patch("http://serpaadministrador.com.ar:8000/users/actualizar-fecha",{
           id:usuario.usuario._id,
           tipo: "recibo"
       });

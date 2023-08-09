@@ -15,7 +15,7 @@ const CambiarContraseñaEmail = () => {
     const onSubmit = async (data) => {
         setLoading(true);
         const response = await axios.post(
-            `https://serpaadministracionback.onrender.com/users/recuperar-password`,
+            `http://serpaadministrador.com.ar:8000/users/recuperar-password`,
             {
                 email: data.email
             }

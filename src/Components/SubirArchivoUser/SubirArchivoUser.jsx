@@ -48,7 +48,7 @@ function SubirArchivoUser(usuario) {
             });
             try {
               const response = await axios.post(
-                "https://serpaadministracionback.onrender.com/uploads/upload-file",
+                "http://serpaadministrador.com.ar:8000/uploads/upload-file",
                 {
                   file: data.file[0],
                   userId: usuario.usuario._id,
@@ -60,7 +60,7 @@ function SubirArchivoUser(usuario) {
                   },
                 }
               );
-              await axios.patch("https://serpaadministracionback.onrender.com/users/actualizar-fecha",{
+              await axios.patch("http://serpaadministrador.com.ar:8000/users/actualizar-fecha",{
                 id:usuario.usuario._id,
                 tipo: "comprobante"
               });

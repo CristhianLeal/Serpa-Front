@@ -24,7 +24,7 @@ function NavBar() {
 
     useEffect(() => {
         if (idUser !== undefined) {
-            axios.get(`https://serpaadministracionback.onrender.com/users/${idUser}`)
+            axios.get(`http://serpaadministrador.com.ar:8000/users/${idUser}`)
                 .then((response) => {
                     setUsers(response.data);
                     if (response.data.role  === 'admin') {
