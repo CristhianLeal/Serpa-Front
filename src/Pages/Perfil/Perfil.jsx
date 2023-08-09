@@ -21,9 +21,9 @@ function Perfil() {
     const fetchUser = async () => {
       if (idUser !== undefined) {
         try {
-          const response = await axios.get(`http://serpaadministrador.com.ar:8000/users/${idUser}`);
+          const response = await axios.get(`https://serpaadministrador.com.ar:8001/users/${idUser}`);
           setUsers(response.data);
-          const response2 = await axios.get(`http://serpaadministrador.com.ar:8000/edificio/getEdificioName/${response.data.edificio}`)
+          const response2 = await axios.get(`https://serpaadministrador.com.ar:8001/edificio/getEdificioName/${response.data.edificio}`)
           setEdificio(response2.data);
         } catch (error) {
           console.error(error);
@@ -37,7 +37,7 @@ function Perfil() {
 const downloadPdf = async () => {
   setIsLoading(true);
   try {
-    const response = await axios.get(`http://serpaadministrador.com.ar:8000/uploads/getpdf-ultimo/${idUser}`, {
+    const response = await axios.get(`https://serpaadministrador.com.ar:8001/uploads/getpdf-ultimo/${idUser}`, {
       responseType: 'blob',
     });
 
@@ -67,7 +67,7 @@ const downloadPdf = async () => {
 const downloadPdf3 = async () => {
   setIsLoading3(true);
   try {
-    const response = await axios.get(`http://serpaadministrador.com.ar:8000/uploads/getpdf-ultimo-expensa/${edificio._id}`, {
+    const response = await axios.get(`https://serpaadministrador.com.ar:8001/uploads/getpdf-ultimo-expensa/${edificio._id}`, {
       responseType: 'blob',
     });
 

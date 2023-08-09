@@ -19,7 +19,7 @@ const Administrador = () => {
   }
 
   useEffect(() =>{
-    const response = axios.get(`http://serpaadministrador.com.ar:8000/edificio/get-edificio`)
+    const response = axios.get(`https://serpaadministrador.com.ar:8001/edificio/get-edificio`)
     .then((response) =>{
       setEdificios(response.data);
     })

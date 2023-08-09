@@ -28,7 +28,7 @@ const CambiarContraseñaAdmin = () => {
     const onSubmit = async (data) => {
         setLoading(true);
         const respuesta = await axios.post(
-            `http://serpaadministrador.com.ar:8000/users/recuperar-password-admin`,
+            `https://serpaadministrador.com.ar:8001/users/recuperar-password-admin`,
             {
                 id: user,
                 password:data.password

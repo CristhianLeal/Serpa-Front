@@ -25,14 +25,14 @@ function ComprobantesRecibosPortero() {
     const fetchUser = async () => {
       if (idUser !== undefined) {
         try {
-          const response = await axios.get(`http://serpaadministrador.com.ar:8000/users/${idUser}`);
+          const response = await axios.get(`https://serpaadministrador.com.ar:8001/users/${idUser}`);
           setUsers(response.data);
-          const response2 = await axios.get(`http://serpaadministrador.com.ar:8000/edificio/getEdificioName/${response.data.edificio}`)
+          const response2 = await axios.get(`https://serpaadministrador.com.ar:8001/edificio/getEdificioName/${response.data.edificio}`)
           setSelectedEdificio(response2.data);
-          const response3 = await axios.get(`http://serpaadministrador.com.ar:8000/uploads/getpdf/${idUser}`);
+          const response3 = await axios.get(`https://serpaadministrador.com.ar:8001/uploads/getpdf/${idUser}`);
           setComprobantes(response3.data.comprobantes);
           setRecibos(response3.data.recibos);
-          const response4 = await axios.get(`http://serpaadministrador.com.ar:8000/uploads/getpdf/${response2.data._id}`);
+          const response4 = await axios.get(`https://serpaadministrador.com.ar:8001/uploads/getpdf/${response2.data._id}`);
           setExpensas(response4.data.expensas);
         } catch (error) {
           console.error(error);

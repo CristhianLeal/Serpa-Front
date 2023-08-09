@@ -20,7 +20,7 @@ function FilaUsuariosEdificio(usuario) {
   const downloadPdf = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(`http://serpaadministrador.com.ar:8000/uploads/getpdf-ultimo/${usuario.usuario._id}`, {
+      const response = await axios.get(`https://serpaadministrador.com.ar:8001/uploads/getpdf-ultimo/${usuario.usuario._id}`, {
         responseType: 'blob',
       });
       
@@ -48,7 +48,7 @@ function FilaUsuariosEdificio(usuario) {
   const downloadPdf2 = async () => {
     setIsLoading2(true);
     try {
-      const response = await axios.get(`http://serpaadministrador.com.ar:8000/uploads/getpdf-ultimo-comprobante/${usuario.usuario._id}`, {
+      const response = await axios.get(`https://serpaadministrador.com.ar:8001/uploads/getpdf-ultimo-comprobante/${usuario.usuario._id}`, {
         responseType: 'blob',
       });
   
@@ -78,8 +78,8 @@ function FilaUsuariosEdificio(usuario) {
   const downloadPdf3 = async () => {
     setIsLoading3(true);
     try {
-      const edificiosResponse = await axios.get(`http://serpaadministrador.com.ar:8000/edificio/getEdificioName/${usuario.usuario.edificio}`);
-      const response = await axios.get(`http://serpaadministrador.com.ar:8000/uploads/getpdf-ultimo-expensa/${edificiosResponse.data._id}`, {
+      const edificiosResponse = await axios.get(`https://serpaadministrador.com.ar:8001/edificio/getEdificioName/${usuario.usuario.edificio}`);
+      const response = await axios.get(`https://serpaadministrador.com.ar:8001/uploads/getpdf-ultimo-expensa/${edificiosResponse.data._id}`, {
         responseType: 'blob',});
       if (response.status === 200) {
         const date = new Date();
@@ -119,7 +119,7 @@ function FilaUsuariosEdificio(usuario) {
 
     const fetchData = async () => {
         try {
-          const response = await axios.get(`http://serpaadministrador.com.ar:8000/edificio/getEdificioName/${usuario.usuario.edificio}`)
+          const response = await axios.get(`https://serpaadministrador.com.ar:8001/edificio/getEdificioName/${usuario.usuario.edificio}`)
           setEdificio(response.data)
         } catch (error) {
           console.error(error);
